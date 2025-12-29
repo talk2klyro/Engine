@@ -58,7 +58,6 @@ function render(data) {
         `;
       });
     } else if (item.image) {
-      // fallback for single image
       imagesHtml = `
         <div class="carousel-image">
           <img src="${item.image}" alt="${item.alt || item.title}" loading="lazy" />
@@ -89,5 +88,32 @@ if (searchInput) {
       i => i.title.toLowerCase().includes(value) || i.description.toLowerCase().includes(value)
     );
     render(filtered);
+  });
+}
+
+// ---------------------------
+// AFFILIATE MODAL
+// ---------------------------
+const affiliateBtn = document.getElementById("affiliateBtn");
+const affiliateModal = document.getElementById("affiliateModal");
+const closeAffiliate = document.getElementById("closeAffiliate");
+
+if (affiliateBtn && affiliateModal && closeAffiliate) {
+  affiliateBtn.addEventListener("click", () => {
+    affiliateModal.style.display = "flex";
+    affiliateModal.setAttribute("aria-hidden", "false");
+  });
+
+  closeAffiliate.addEventListener("click", () => {
+    affiliateModal.style.display = "none";
+    affiliateModal.setAttribute("aria-hidden", "true");
+  });
+
+  // Close modal on outside click
+  affiliateModal.addEventListener("click", (e) => {
+    if (e.target === affiliateModal) {
+      affiliateModal.style.display = "none";
+      affiliateModal.setAttribute("aria-hidden", "true");
+    }
   });
 }

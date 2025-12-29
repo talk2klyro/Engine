@@ -1,16 +1,19 @@
-/* RESET */
+/* --------------------------- */
+/* RESET & ROOT SCALE */
+/* --------------------------- */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* ROOT SCALE */
 :root {
   font-size: clamp(16px, 2.5vw, 22px);
 }
 
+/* --------------------------- */
 /* BODY */
+/* --------------------------- */
 body {
   margin: 0;
   font-family: system-ui, Arial, sans-serif;
@@ -19,7 +22,9 @@ body {
   line-height: 1.6;
 }
 
+/* --------------------------- */
 /* TOP BAR */
+/* --------------------------- */
 .topbar {
   padding: clamp(1rem, 3vw, 2rem);
   background: #111;
@@ -41,18 +46,24 @@ body {
   color: #fff;
 }
 
+/* --------------------------- */
 /* CONTAINER */
+/* --------------------------- */
 .container {
   padding: clamp(1rem, 3vw, 2rem);
 }
 
-/* MASONRY (ZOOM-AWARE) */
+/* --------------------------- */
+/* MASONRY / CARD GRID */
+/* --------------------------- */
 .masonry {
   column-width: 18rem;
   column-gap: clamp(1rem, 4vw, 2rem);
 }
 
+/* --------------------------- */
 /* CARD */
+/* --------------------------- */
 .card {
   break-inside: avoid;
   margin-bottom: clamp(1rem, 4vw, 2rem);
@@ -62,13 +73,12 @@ body {
   overflow: hidden;
 }
 
-/* FOCUS */
 .card:focus {
   outline: 0.4rem solid yellow;
   outline-offset: 0.2rem;
 }
 
-/* IMAGE */
+/* IMAGE / CARD CONTENT */
 .card img {
   width: 100%;
   height: auto;
@@ -76,7 +86,6 @@ body {
   filter: contrast(120%);
 }
 
-/* CONTENT */
 .card-content {
   padding: clamp(1rem, 3vw, 1.6rem);
 }
@@ -91,7 +100,6 @@ body {
   margin: 0 0 1rem;
 }
 
-/* BUTTON */
 .card-content button {
   width: 100%;
   min-height: 3rem;
@@ -110,7 +118,44 @@ body {
   outline: 0.25rem solid #000;
 }
 
+/* --------------------------- */
+/* CAROUSEL FOR MULTIPLE IMAGES */
+/* --------------------------- */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-image {
+  flex: 0 0 auto;
+  width: 100%;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.carousel-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ROMAN NUMERAL OVERLAY */
+.roman-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* --------------------------- */
 /* REDUCE MOTION */
+/* --------------------------- */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;

@@ -6,53 +6,59 @@ if (sessionStorage.getItem("hasAccess") !== "true") {
 }
 
 // ---------------------------
-// DATA & RENDERING
+// ELEMENTS & STATE
 // ---------------------------
 const grid = document.getElementById("grid");
 const searchInput = document.getElementById("searchInput");
-
 let items = [];
 
-// Utility: convert number to Roman numerals
+// ---------------------------
+// UTILITY: Roman numerals
+// ---------------------------
 function toRoman(num) {
   const romans = ["I","II","III","IV","V","VI","VII","VIII","IX","X"];
   return romans[num - 1] || num;
 }
 
-// Load JSON data
+// ---------------------------
+// LOAD DATA
+// ---------------------------
 fetch("data.json")
-  .then((res) => res.json())
-  .then((data) => {
+  .then(res => res.json())
+  .then(data => {
     items = data;
     render(items);
   })
-  .catch((err) => {
+  .catch(err => {
     console.error("Failed to load data.json:", err);
-    grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
+    if (grid) grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
   });
 
-// Render function
+// ---------------------------
+// RENDER FUNCTION
+// ---------------------------
 function render(data) {
+  if (!grid) return;
   grid.innerHTML = "";
 
-  data.forEach((item) => {
+  data.forEach(item => {
     const card = document.createElement("article");
     card.className = "card";
     card.tabIndex = 0;
 
-    // Build carousel HTML for multiple images
+    // Create carousel HTML
     let imagesHtml = "";
     if (item.images && item.images.length > 0) {
       item.images.forEach((img, idx) => {
         imagesHtml += `
           <div class="carousel-image">
-            <img src="${img}" alt="${item.title} - Image ${idx + 1}" loading="lazy" />
-            <span class="roman-overlay">${toRoman(idx + 1)}</span>
+            <img src="${img}" alt="${item.title} - Image ${idx+1}" loading="lazy" />
+            <span class="roman-overlay">${toRoman(idx+1)}</span>
           </div>
         `;
       });
     } else if (item.image) {
-      // fallback to single image if no array
+      // fallback for single image
       imagesHtml = `
         <div class="carousel-image">
           <img src="${item.image}" alt="${item.alt || item.title}" loading="lazy" />
@@ -77,15 +83,11 @@ function render(data) {
 // SEARCH FUNCTIONALITY
 // ---------------------------
 if (searchInput) {
-  searchInput.addEventListener("input", (e) => {
+  searchInput.addEventListener("input", e => {
     const value = e.target.value.toLowerCase();
-
     const filtered = items.filter(
-      (item) =>
-        item.title.toLowerCase().includes(value) ||
-        item.description.toLowerCase().includes(value)
+      i => i.title.toLowerCase().includes(value) || i.description.toLowerCase().includes(value)
     );
-
     render(filtered);
   });
 }

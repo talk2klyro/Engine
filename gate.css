@@ -1,7 +1,9 @@
+/* RESET */
 * {
   box-sizing: border-box;
 }
 
+/* BODY */
 body {
   margin: 0;
   min-height: 100vh;
@@ -13,6 +15,7 @@ body {
   justify-content: center;
 }
 
+/* GATE CONTAINER */
 .gate {
   width: 100%;
   max-width: 420px;
@@ -23,6 +26,7 @@ body {
   text-align: center;
 }
 
+/* HEADINGS & TEXT */
 .gate h1 {
   font-size: clamp(1.8rem, 6vw, 2.4rem);
   margin-bottom: 1rem;
@@ -33,6 +37,7 @@ body {
   margin-bottom: 1.5rem;
 }
 
+/* INPUT */
 .gate input {
   width: 100%;
   padding: 1rem;
@@ -41,8 +46,10 @@ body {
   background: #000;
   color: #fff;
   margin-bottom: 1.2rem;
+  border-radius: 10px;
 }
 
+/* PRIMARY BUTTONS */
 .gate button {
   width: 100%;
   padding: 1rem;
@@ -60,8 +67,91 @@ body {
   outline: 4px solid #000;
 }
 
+/* ERROR MESSAGE */
 #error {
   margin-top: 1rem;
   color: #ff4d4d;
   font-weight: bold;
 }
+
+/* ============================= */
+/* SUBSCRIPTION BUTTON */
+/* ============================= */
+
+#subscribeBtn {
+  margin-top: 1rem;
+  background: #fff;
+  color: #000;
+  font-size: 1.1rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+#subscribeBtn:hover,
+#subscribeBtn:focus {
+  background: yellow;
+  outline: 4px solid #000;
+}
+
+/* ============================= */
+/* MODAL */
+/* ============================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* MODAL CONTENT */
+.modal-content {
+  background: #111;
+  color: #fff;
+  border: 4px solid #fff;
+  padding: 2rem;
+  max-width: 420px;
+  width: calc(100% - 2rem);
+  border-radius: 20px;
+  text-align: center;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn {
+  display: block;
+  margin: 1.5rem 0;
+  background: #25D366;
+  color: #000;
+  padding: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 12px;
+}
+
+.whatsapp-btn:hover,
+.whatsapp-btn:focus {
+  background: #1ebe5d;
+  outline: 4px solid #000;
+}
+
+/* CLOSE BUTTON INSIDE MODAL */
+#closeModal {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#closeModal:hover,
+#closeModal:focus {
+  background: #fff;
+  color: #000;
+  }

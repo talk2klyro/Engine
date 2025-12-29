@@ -1,45 +1,63 @@
+// ---------------------------
+// ACCESS CONTROL
+// ---------------------------
+if (sessionStorage.getItem("hasAccess") !== "true") {
+  window.location.href = "gate.html";
+}
+
+// ---------------------------
+// DATA & RENDERING
+// ---------------------------
 const grid = document.getElementById("grid");
 const searchInput = document.getElementById("searchInput");
 
-const items = [
-  {
-    title: "Creative Thinking",
-    description: "Ideas that spark innovation",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80",
-    alt: "Mountain landscape"
-  },
-  {
-    title: "Business Inspiration",
-    description: "Modern work ideas",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
-    alt: "People working together"
-  }
-];
+let items = [];
 
-render(items);
+// Load JSON data
+fetch("data.json")
+  .then((res) => res.json())
+  .then((data) => {
+    items = data;
+    render(items);
+  })
+  .catch((err) => {
+    console.error("Failed to load data.json:", err);
+    grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
+  });
 
+// Render function
 function render(data) {
   grid.innerHTML = "";
-  data.forEach(item => {
+
+  data.forEach((item) => {
     const card = document.createElement("article");
     card.className = "card";
     card.tabIndex = 0;
+
     card.innerHTML = `
-      <img src="${item.image}" alt="${item.alt}">
+      <img src="${item.image}" alt="${item.alt}" loading="lazy" />
       <div class="card-content">
         <h2>${item.title}</h2>
         <p>${item.description}</p>
-        <button>Save Idea</button>
+        <button aria-label="Save ${item.title}">Save Idea</button>
       </div>
     `;
+
     grid.appendChild(card);
   });
 }
 
-searchInput.addEventListener("input", e => {
-  const q = e.target.value.toLowerCase();
-  render(items.filter(i =>
-    i.title.toLowerCase().includes(q) ||
-    i.description.toLowerCase().includes(q)
-  ));
+// ---------------------------
+// SEARCH FUNCTIONALITY
+// ---------------------------
+searchInput.addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase();
+
+  const filtered = items.filter(
+    (item) =>
+      item.title.toLowerCase().includes(value) ||
+      item.description.toLowerCase().includes(value)
+  );
+
+  render(filtered);
 });

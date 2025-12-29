@@ -1,78 +1,33 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Bento Inspiration Board</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Accessible Pinterest Blueprint</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+  <header class="topbar">
+    <h1>Bento Inspiration Board</h1>
 
-<header class="topbar">
-  <h1>Inspiration Board</h1>
-  <input
-    type="search"
-    aria-label="Search ideas"
-    placeholder="Search ideas"
-  />
-</header>
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="Search ideas"
+      aria-label="Search inspiration"
+    />
+  </header>
 
-<main class="container">
+  <main class="container">
+    <section
+      id="grid"
+      class="masonry"
+      aria-live="polite"
+    ></section>
+  </main>
 
-  <section class="masonry">
-
-    <!-- CARD -->
-    <article class="card" tabindex="0">
-      <img
-        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
-        alt="Mountain landscape with fog"
-      />
-      <div class="card-content">
-        <h2>Creative Thinking</h2>
-        <p>Saved by 2,400 people</p>
-        <button>Save Idea</button>
-      </div>
-    </article>
-
-    <article class="card" tabindex="0">
-      <img
-        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
-        alt="People working together at a desk"
-      />
-      <div class="card-content">
-        <h2>Business Inspiration</h2>
-        <p>Popular work ideas</p>
-        <button>Save Idea</button>
-      </div>
-    </article>
-
-    <article class="card" tabindex="0">
-      <img
-        src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80"
-        alt="Person meditating outdoors"
-      />
-      <div class="card-content">
-        <h2>Health & Wellness</h2>
-        <p>Mind and body focus</p>
-        <button>Save Idea</button>
-      </div>
-    </article>
-
-    <article class="card" tabindex="0">
-      <img
-        src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
-        alt="Technology circuit board"
-      />
-      <div class="card-content">
-        <h2>Technology Trends</h2>
-        <p>Future-focused ideas</p>
-        <button>Save Idea</button>
-      </div>
-    </article>
-
-  </section>
-
-</main>
-
+  <script src="app.js"></script>
 </body>
 </html>

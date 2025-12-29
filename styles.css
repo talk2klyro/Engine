@@ -62,23 +62,25 @@ body {
 }
 
 /* --------------------------- */
-/* CARD */
+/* VERTICAL FEED CARD */
 /* --------------------------- */
 .card {
   break-inside: avoid;
   margin-bottom: clamp(1rem, 4vw, 2rem);
-  border-radius: clamp(0.8rem, 2vw, 1.5rem);
+  border-radius: 20px;
   background: #111;
-  border: 0.25rem solid #fff;
+  border: 4px solid #fff;
   overflow: hidden;
+  outline-offset: 0.2rem;
 }
 
 .card:focus {
   outline: 0.4rem solid yellow;
-  outline-offset: 0.2rem;
 }
 
+/* --------------------------- */
 /* IMAGE / CARD CONTENT */
+/* --------------------------- */
 .card img {
   width: 100%;
   height: auto;
@@ -87,7 +89,7 @@ body {
 }
 
 .card-content {
-  padding: clamp(1rem, 3vw, 1.6rem);
+  padding: 1.5rem; /* updated from previous clamp */
 }
 
 .card-content h2 {
@@ -119,7 +121,7 @@ body {
 }
 
 /* --------------------------- */
-/* CAROUSEL FOR MULTIPLE IMAGES */
+/* HORIZONTAL CAROUSEL */
 /* --------------------------- */
 .carousel {
   display: flex;
@@ -128,10 +130,9 @@ body {
 }
 
 .carousel-image {
-  flex: 0 0 auto;
-  width: 100%;
-  position: relative;
+  flex: 0 0 100%; /* full card width */
   scroll-snap-align: start;
+  position: relative;
 }
 
 .carousel-image img {
@@ -149,7 +150,6 @@ body {
   color: #fff;
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
-  font-size: 0.9rem;
   font-weight: bold;
 }
 

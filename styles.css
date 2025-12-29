@@ -1,112 +1,118 @@
 /* RESET */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-/* ROOT */
+/* ROOT SCALE */
+:root {
+  font-size: clamp(16px, 2.5vw, 22px);
+}
+
+/* BODY */
 body {
   margin: 0;
   font-family: system-ui, Arial, sans-serif;
   background: #0a0a0a;
   color: #ffffff;
-  font-size: 20px;
   line-height: 1.6;
 }
 
 /* TOP BAR */
 .topbar {
-  padding: 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
   background: #111;
-  border-bottom: 4px solid #fff;
+  border-bottom: 0.25rem solid #fff;
 }
 
 .topbar h1 {
   margin: 0 0 1rem;
-  font-size: 2.2rem;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
 }
 
 .topbar input {
   width: 100%;
-  padding: 1rem;
-  font-size: 1.2rem;
-  border: 3px solid #fff;
+  max-width: 100%;
+  padding: clamp(0.8rem, 3vw, 1.2rem);
+  font-size: 1rem;
+  border: 0.2rem solid #fff;
   background: #000;
   color: #fff;
 }
 
 /* CONTAINER */
 .container {
-  padding: 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
 }
 
-/* MASONRY */
+/* MASONRY (ZOOM-AWARE) */
 .masonry {
-  column-count: 1;
-  column-gap: 2rem;
+  column-width: 18rem;
+  column-gap: clamp(1rem, 4vw, 2rem);
 }
 
-@media (min-width: 700px) {
-  .masonry {
-    column-count: 2;
-  }
-}
-
-@media (min-width: 1100px) {
-  .masonry {
-    column-count: 3;
-  }
-}
-
-/* BENTO CARD */
+/* CARD */
 .card {
   break-inside: avoid;
-  margin-bottom: 2rem;
-  border-radius: 20px;
+  margin-bottom: clamp(1rem, 4vw, 2rem);
+  border-radius: clamp(0.8rem, 2vw, 1.5rem);
   background: #111;
-  border: 4px solid #fff;
+  border: 0.25rem solid #fff;
   overflow: hidden;
 }
 
+/* FOCUS */
 .card:focus {
-  outline: 6px solid yellow;
+  outline: 0.4rem solid yellow;
+  outline-offset: 0.2rem;
 }
 
 /* IMAGE */
 .card img {
   width: 100%;
+  height: auto;
   display: block;
   filter: contrast(120%);
 }
 
 /* CONTENT */
 .card-content {
-  padding: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.6rem);
 }
 
 .card-content h2 {
-  font-size: 1.7rem;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
   margin: 0 0 0.5rem;
 }
 
 .card-content p {
-  font-size: 1.2rem;
-  margin: 0 0 1.2rem;
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
+  margin: 0 0 1rem;
 }
 
 /* BUTTON */
 .card-content button {
   width: 100%;
-  padding: 1rem;
-  font-size: 1.2rem;
+  min-height: 3rem;
+  padding: clamp(0.8rem, 3vw, 1.2rem);
+  font-size: clamp(1rem, 3vw, 1.2rem);
   background: #fff;
   color: #000;
   border: none;
-  border-radius: 12px;
+  border-radius: clamp(0.6rem, 2vw, 1rem);
   cursor: pointer;
 }
 
 .card-content button:hover,
 .card-content button:focus {
   background: yellow;
-  outline: 4px solid #000;
+  outline: 0.25rem solid #000;
+}
+
+/* REDUCE MOTION */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }

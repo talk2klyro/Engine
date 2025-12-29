@@ -13,6 +13,12 @@ const searchInput = document.getElementById("searchInput");
 
 let items = [];
 
+// Utility: convert number to Roman numerals
+function toRoman(num) {
+  const romans = ["I","II","III","IV","V","VI","VII","VIII","IX","X"];
+  return romans[num - 1] || num;
+}
+
 // Load JSON data
 fetch("data.json")
   .then((res) => res.json())
@@ -34,8 +40,28 @@ function render(data) {
     card.className = "card";
     card.tabIndex = 0;
 
+    // Build carousel HTML for multiple images
+    let imagesHtml = "";
+    if (item.images && item.images.length > 0) {
+      item.images.forEach((img, idx) => {
+        imagesHtml += `
+          <div class="carousel-image">
+            <img src="${img}" alt="${item.title} - Image ${idx + 1}" loading="lazy" />
+            <span class="roman-overlay">${toRoman(idx + 1)}</span>
+          </div>
+        `;
+      });
+    } else if (item.image) {
+      // fallback to single image if no array
+      imagesHtml = `
+        <div class="carousel-image">
+          <img src="${item.image}" alt="${item.alt || item.title}" loading="lazy" />
+        </div>
+      `;
+    }
+
     card.innerHTML = `
-      <img src="${item.image}" alt="${item.alt}" loading="lazy" />
+      <div class="carousel">${imagesHtml}</div>
       <div class="card-content">
         <h2>${item.title}</h2>
         <p>${item.description}</p>
@@ -50,14 +76,16 @@ function render(data) {
 // ---------------------------
 // SEARCH FUNCTIONALITY
 // ---------------------------
-searchInput.addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase();
+if (searchInput) {
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase();
 
-  const filtered = items.filter(
-    (item) =>
-      item.title.toLowerCase().includes(value) ||
-      item.description.toLowerCase().includes(value)
-  );
+    const filtered = items.filter(
+      (item) =>
+        item.title.toLowerCase().includes(value) ||
+        item.description.toLowerCase().includes(value)
+    );
 
-  render(filtered);
-});
+    render(filtered);
+  });
+}

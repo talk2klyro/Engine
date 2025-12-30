@@ -38,7 +38,6 @@ body {
 
 .topbar input {
   width: 100%;
-  max-width: 100%;
   padding: clamp(0.8rem, 3vw, 1.2rem);
   font-size: 1rem;
   border: 0.2rem solid #fff;
@@ -83,34 +82,31 @@ body {
 /* --------------------------- */
 .card img {
   width: 100%;
-  height: auto;
   display: block;
   filter: contrast(120%);
 }
 
 .card-content {
-  padding: 1.5rem; /* updated from previous clamp */
+  padding: 1.5rem;
 }
 
 .card-content h2 {
   font-size: clamp(1.2rem, 4vw, 1.8rem);
-  margin: 0 0 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .card-content p {
   font-size: clamp(1rem, 3.5vw, 1.3rem);
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
 }
 
 .card-content button {
   width: 100%;
   min-height: 3rem;
-  padding: clamp(0.8rem, 3vw, 1.2rem);
-  font-size: clamp(1rem, 3vw, 1.2rem);
   background: #fff;
   color: #000;
-  border: none;
-  border-radius: clamp(0.6rem, 2vw, 1rem);
+  border-radius: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
 }
 
@@ -130,14 +126,13 @@ body {
 }
 
 .carousel-image {
-  flex: 0 0 100%; /* full card width */
+  flex: 0 0 100%;
   scroll-snap-align: start;
   position: relative;
 }
 
 .carousel-image img {
   width: 100%;
-  height: auto;
   display: block;
 }
 
@@ -147,7 +142,6 @@ body {
   top: 8px;
   right: 8px;
   background: rgba(0,0,0,0.6);
-  color: #fff;
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
   font-weight: bold;
@@ -159,7 +153,7 @@ body {
 .affiliate-banner {
   background: #000;
   border: 3px solid #fff;
-  padding: 1rem;
+  padding: 1.2rem;
   margin-bottom: 1.5rem;
   border-radius: 16px;
   text-align: center;
@@ -167,22 +161,30 @@ body {
 
 .affiliate-banner p {
   font-size: 1.1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
-.affiliate-banner button {
-  background: #fff;
+/* --------------------------- */
+/* PREMIUM AFFILIATE BUTTON */
+/* --------------------------- */
+.affiliate-btn {
+  background: linear-gradient(135deg, #ffffff, #f2f2f2);
   color: #000;
-  padding: 0.8rem 1.2rem;
-  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
   font-size: 1rem;
+  font-weight: 600;
+  border: none;
   cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.affiliate-banner button:hover,
-.affiliate-banner button:focus {
-  background: yellow;
-  outline: 0.25rem solid #000;
+.affiliate-btn:hover,
+.affiliate-btn:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  outline: none;
 }
 
 /* --------------------------- */

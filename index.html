@@ -8,10 +8,24 @@
 </head>
 
 <body>
+
   <!-- TOPBAR -->
   <header class="topbar">
     <h1>Bento Inspiration Board</h1>
 
+    <!-- Affiliate onboarding text -->
+    <p class="affiliate-intro">
+      Help others discover meaningful ideas.
+      <br />
+      Become an affiliate and earn by sharing via WhatsApp status.
+    </p>
+
+    <!-- Affiliate CTA button -->
+    <button id="openAffiliateModal" class="affiliate-btn">
+      Learn about Affiliate Program
+    </button>
+
+    <!-- Search -->
     <input
       id="searchInput"
       type="search"
@@ -20,38 +34,22 @@
     />
   </header>
 
-  <!-- AFFILIATE SECTION (UPDATED) -->
-  <section class="affiliate-section">
-    <h2>Help others discover meaningful ideas</h2>
-    <p>
-      Become an affiliate and earn by sharing valuable content through your WhatsApp status.
-    </p>
-    <button id="openAffiliateModal" class="affiliate-btn">
-      Learn about Affiliate Program
-    </button>
-  </section>
-
   <!-- MAIN CONTENT -->
-  <main class="container">
-    <section
-      id="grid"
-      class="masonry"
-      aria-live="polite"
-    ></section>
-  </main>
+  <main id="grid" class="grid" aria-live="polite"></main>
 
-  <!-- AFFILIATE MODAL (UPDATED STRUCTURE) -->
+  <!-- AFFILIATE MODAL -->
   <div id="affiliateModal" class="modal hidden" aria-hidden="true">
     <div class="modal-content">
       <button class="close-modal" aria-label="Close modal">&times;</button>
 
-      <h3>Affiliate Program</h3>
+      <h2>Affiliate Program</h2>
 
       <p>
         As an affiliate, you help people discover valuable content.
         You earn by sharing responsibly and transparently.
       </p>
 
+      <h3>Your role:</h3>
       <ul>
         <li>Share access responsibly</li>
         <li>Guide users respectfully</li>
@@ -59,10 +57,10 @@
       </ul>
 
       <a
-        class="whatsapp-btn"
         href="https://wa.me/2349012728201?text=Hello%20I%20want%20to%20join%20the%20affiliate%20program."
         target="_blank"
         rel="noopener"
+        class="whatsapp-btn"
       >
         Chat with Us on WhatsApp
       </a>
@@ -70,18 +68,17 @@
   </div>
 
   <!-- FOOTER -->
-  <footer>
+  <footer class="footer">
     <a
       href="https://wa.me/2349012728201"
       target="_blank"
       rel="noopener"
-      class="footer-whatsapp"
+      class="whatsapp-cta"
     >
       Join our WhatsApp Discussion Group
     </a>
   </footer>
 
-  <!-- SCRIPT -->
   <script src="app.js"></script>
 </body>
 </html>

@@ -31,7 +31,9 @@ fetch("data.json")
   })
   .catch(err => {
     console.error("Failed to load data.json:", err);
-    if (grid) grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
+    if (grid) {
+      grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
+    }
   });
 
 // ---------------------------
@@ -46,14 +48,15 @@ function render(data) {
     card.className = "card";
     card.tabIndex = 0;
 
-    // Create carousel HTML
+    // Build carousel
     let imagesHtml = "";
+
     if (item.images && item.images.length > 0) {
       item.images.forEach((img, idx) => {
         imagesHtml += `
           <div class="carousel-image">
-            <img src="${img}" alt="${item.title} - Image ${idx+1}" loading="lazy" />
-            <span class="roman-overlay">${toRoman(idx+1)}</span>
+            <img src="${img}" alt="${item.title} - Image ${idx + 1}" loading="lazy" />
+            <span class="roman-overlay">${toRoman(idx + 1)}</span>
           </div>
         `;
       });
@@ -85,35 +88,36 @@ if (searchInput) {
   searchInput.addEventListener("input", e => {
     const value = e.target.value.toLowerCase();
     const filtered = items.filter(
-      i => i.title.toLowerCase().includes(value) || i.description.toLowerCase().includes(value)
+      i =>
+        i.title.toLowerCase().includes(value) ||
+        i.description.toLowerCase().includes(value)
     );
     render(filtered);
   });
 }
 
 // ---------------------------
-// AFFILIATE MODAL
+// AFFILIATE MODAL (UPDATED)
 // ---------------------------
-const affiliateBtn = document.getElementById("affiliateBtn");
-const affiliateModal = document.getElementById("affiliateModal");
-const closeAffiliate = document.getElementById("closeAffiliate");
+const openBtn = document.getElementById("openAffiliateModal");
+const modal = document.getElementById("affiliateModal");
+const closeBtn = document.querySelector(".close-modal");
 
-if (affiliateBtn && affiliateModal && closeAffiliate) {
-  affiliateBtn.addEventListener("click", () => {
-    affiliateModal.style.display = "flex";
-    affiliateModal.setAttribute("aria-hidden", "false");
+if (openBtn && modal && closeBtn) {
+  openBtn.addEventListener("click", () => {
+    modal.classList.remove("hidden");
+    modal.setAttribute("aria-hidden", "false");
   });
 
-  closeAffiliate.addEventListener("click", () => {
-    affiliateModal.style.display = "none";
-    affiliateModal.setAttribute("aria-hidden", "true");
+  closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    modal.setAttribute("aria-hidden", "true");
   });
 
-  // Close modal on outside click
-  affiliateModal.addEventListener("click", (e) => {
-    if (e.target === affiliateModal) {
-      affiliateModal.style.display = "none";
-      affiliateModal.setAttribute("aria-hidden", "true");
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+      modal.setAttribute("aria-hidden", "true");
     }
   });
 }

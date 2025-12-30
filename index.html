@@ -20,16 +20,16 @@
     />
   </header>
 
-  <!-- AFFILIATE BANNER -->
-  <div class="affiliate-banner">
+  <!-- AFFILIATE SECTION (UPDATED) -->
+  <section class="affiliate-section">
+    <h2>Help others discover meaningful ideas</h2>
     <p>
-      Help others discover meaningful ideas.<br />
-      Become an affiliate and earn by sharing value.
+      Become an affiliate and earn by sharing valuable content through your WhatsApp status.
     </p>
-    <button id="affiliateBtn">
+    <button id="openAffiliateModal" class="affiliate-btn">
       Learn about Affiliate Program
     </button>
-  </div>
+  </section>
 
   <!-- MAIN CONTENT -->
   <main class="container">
@@ -40,18 +40,19 @@
     ></section>
   </main>
 
-  <!-- AFFILIATE MODAL -->
-  <div id="affiliateModal" class="modal" aria-hidden="true">
+  <!-- AFFILIATE MODAL (UPDATED STRUCTURE) -->
+  <div id="affiliateModal" class="modal hidden" aria-hidden="true">
     <div class="modal-content">
-      <h2>Affiliate Program</h2>
+      <button class="close-modal" aria-label="Close modal">&times;</button>
+
+      <h3>Affiliate Program</h3>
 
       <p>
         As an affiliate, you help people discover valuable content.
         You earn by sharing responsibly and transparently.
       </p>
 
-      <p><strong>Your role:</strong></p>
-      <ul style="text-align:left">
+      <ul>
         <li>Share access responsibly</li>
         <li>Guide users respectfully</li>
         <li>Represent our values with integrity</li>
@@ -65,10 +66,20 @@
       >
         Chat with Us on WhatsApp
       </a>
-
-      <button id="closeAffiliate">Close</button>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a
+      href="https://wa.me/2349012728201"
+      target="_blank"
+      rel="noopener"
+      class="footer-whatsapp"
+    >
+      Join our WhatsApp Discussion Group
+    </a>
+  </footer>
 
   <!-- SCRIPT -->
   <script src="app.js"></script>

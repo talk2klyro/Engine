@@ -1,67 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Reference</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>Reference Detail</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- TOPBAR -->
   <header class="topbar">
-    <h1 id="referenceTitle">Reference</h1>
+    <h1 id="referenceTitle">Loading...</h1>
+    <a href="index.html" class="affiliate-btn">← Back to Board</a>
   </header>
 
   <!-- MAIN CONTENT -->
-  <main class="grid" id="referenceContent">
-    <p style="color:#cfcfcf;">Loading reference...</p>
+  <main class="grid">
+    <div id="referenceContent">
+      <p style="color:#cfcfcf;">Fetching reference content...</p>
+    </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <a href="index.html" class="whatsapp-cta">← Back to Inspiration Board</a>
+    <p>Join the community discussion on WhatsApp</p>
+    <a class="whatsapp-cta" href="https://wa.me/2349012728201" target="_blank" rel="noopener">
+      Join WhatsApp Group
+    </a>
   </footer>
 
   <!-- SCRIPT -->
-  <script>
-    // Get reference id from URL
-    const params = new URLSearchParams(window.location.search);
-    const refId = params.get("id");
-
-    const container = document.getElementById("referenceContent");
-    const titleEl = document.getElementById("referenceTitle");
-
-    if (!refId) {
-      container.innerHTML = "<p style='color:#ff4d4d;'>No reference specified.</p>";
-    } else {
-      fetch(`references/${refId}.json`)
-        .then(res => res.json())
-        .then(data => {
-          titleEl.textContent = data.title;
-
-          // Build images HTML
-          const imagesHtml = data.images?.map(img => `
-            <div class="card">
-              <img src="${img}" alt="${data.title}" loading="lazy" />
-            </div>
-          `).join("") || "";
-
-          // Build source link
-          const sourceLink = data.link ? `<p><a href="${data.link}" target="_blank" class="whatsapp-btn">Read Source</a></p>` : "";
-
-          container.innerHTML = `
-            <p style="margin-bottom:1rem;">${data.description}</p>
-            ${imagesHtml}
-            ${sourceLink}
-          `;
-        })
-        .catch(err => {
-          console.error(err);
-          container.innerHTML = "<p style='color:#ff4d4d;'>Failed to load reference.</p>";
-        });
-    }
-  </script>
-
+  <script src="reference.js"></script>
 </body>
 </html>

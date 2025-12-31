@@ -1,295 +1,65 @@
-/* =========================
-   FONT (GOTH)
-========================= */
-@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800&display=swap");
+/* =========================  
+   CARD ACTIONS (3-BUTTON BAR)  
+========================= */  
+.card-actions {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center;  
+  gap: 0.6rem;  
+  padding: 0.8rem 1rem 1rem;  
+  border-top: 1px solid rgba(255, 255, 255, 0.08);  
+}  
 
-/* =========================
-   RESET & ROOT
-========================= */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Base action button */  
+.action-btn {  
+  flex: 1;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  gap: 0.35rem;  
+  padding: 0.55rem 0;  
+  font-size: 0.85rem;  
+  font-weight: 600;  
+  border-radius: 999px;  
+  border: 1px solid rgba(255, 255, 255, 0.12);  
+  background: rgba(255, 255, 255, 0.06);  
+  color: #fff;  
+  cursor: pointer;  
+  transition: background 0.2s ease, transform 0.2s ease;  
+}  
 
-:root {
-  font-size: clamp(16px, 2.5vw, 20px);
-}
+/* Hover / focus */  
+.action-btn:hover,  
+.action-btn:focus {  
+  background: rgba(255, 255, 255, 0.18);  
+  transform: translateY(-2px);  
+  outline: none;  
+}  
 
-/* =========================
-   BASE
-========================= */
-body {
-  font-family: "Gothic A1", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: #0b0b0b;
-  color: #ffffff;
-  line-height: 1.6;
-}
+/* Icon-only middle button (🤔) */  
+.action-btn.icon-only {  
+  flex: 0.8;  
+  font-size: 1.05rem;  
+}  
 
-/* =========================
-   TOPBAR
-========================= */
-.topbar {
-  padding: 1.6rem 1.2rem 2rem;
-  background: #0f0f0f;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
+/* Single action centering */  
+.card-actions.single {  
+  justify-content: center;  
+}  
 
-.topbar h1 {
-  font-size: clamp(1.6rem, 4vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.8rem;
-}
+.card-actions.single .action-btn {  
+  max-width: 180px;  
+}  
 
-/* Affiliate intro */
-.affiliate-intro {
-  font-size: 0.95rem;
-  color: #cfcfcf;
-  max-width: 520px;
-  margin-bottom: 1.2rem;
-}
+/* Two actions spacing */  
+.card-actions.double .action-btn {  
+  flex: 1;  
+}  
 
-/* =========================
-   🔥 AFFILIATE BUTTON
-========================= */
-.affiliate-btn {
-  background: linear-gradient(135deg, #ffffff, #eaeaea);
-  color: #000;
-  padding: 0.85rem 1.6rem;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  margin-bottom: 1.4rem;
-}
-
-.affiliate-btn:hover,
-.affiliate-btn:focus {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.6);
-  outline: none;
-}
-
-/* =========================
-   SEARCH
-========================= */
-#searchInput {
-  width: 100%;
-  max-width: 420px;
-  padding: 0.75rem 1.1rem;
-  border-radius: 14px;
-  border: none;
-  outline: none;
-  font-size: 0.95rem;
-  background: #000;
-  color: #fff;
-}
-
-/* =========================
-   GRID / FEED
-========================= */
-.grid {
-  max-width: 720px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-/* =========================
-   CARD
-========================= */
-.card {
-  background: #111;
-  border-radius: 22px;
-  border: 1px solid rgba(255,255,255,0.12);
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(0,0,0,0.55);
-}
-
-.card img {
-  width: 100%;
-  display: block;
-}
-
-/* =========================
-   CAROUSEL
-========================= */
-.carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-}
-
-.carousel-image {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-  position: relative;
-}
-
-.roman-overlay {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.6);
-  padding: 0.25rem 0.5rem;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-/* =========================
-   CARD CONTENT
-========================= */
-.card-content {
-  padding: 1.2rem;
-}
-
-.card-content h2 {
-  font-size: 1.05rem;
-  margin-bottom: 0.4rem;
-}
-
-.card-content p {
-  font-size: 0.9rem;
-  color: #d0d0d0;
-  margin-bottom: 0.8rem;
-}
-
-.card-content button {
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 14px;
-  border: none;
-  font-weight: 700;
-  cursor: pointer;
-  background: #ffffff;
-  color: #000;
-}
-
-.card-content button:hover {
-  background: #ffeb3b;
-}
-
-/* =========================
-   MODAL
-========================= */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: #ffffff;
-  color: #000;
-  padding: 2rem;
-  border-radius: 22px;
-  max-width: 440px;
-  width: 90%;
-  position: relative;
-}
-
-.modal-content h2 {
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin-bottom: 0.8rem;
-}
-
-.modal-content p {
-  font-size: 0.95rem;
-  margin-bottom: 1.2rem;
-}
-
-.modal-content ul {
-  padding-left: 1.2rem;
-}
-
-.modal-content li {
-  margin-bottom: 0.5rem;
-}
-
-/* Close modal */
-.close-modal {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-/* WhatsApp button */
-.whatsapp-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  background: #25d366;
-  color: #fff;
-  padding: 0.75rem 1.3rem;
-  border-radius: 999px;
-  font-weight: 700;
-  text-decoration: none;
-  text-align: center;
-}
-
-/* =========================
-   FOOTER
-========================= */
-.footer {
-  padding: 2rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  text-align: center;
-}
-
-.whatsapp-cta {
-  display: inline-block;
-  background: #25d366;
-  color: #fff;
-  padding: 0.9rem 1.4rem;
-  border-radius: 999px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-/* =========================
-   REDUCED MOTION
-========================= */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 480px) {
-  .topbar h1 {
-    font-size: 1.5rem;
-  }
-
-  .affiliate-intro {
-    font-size: 0.9rem;
-  }
+/* Touch optimization */  
+@media (max-width: 480px) {  
+  .action-btn {  
+    font-size: 0.8rem;  
+    padding: 0.5rem 0;  
+  }  
 }

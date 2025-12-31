@@ -1,65 +1,56 @@
-/* =========================  
-   CARD ACTIONS (3-BUTTON BAR)  
-========================= */  
-.card-actions {  
-  display: flex;  
-  justify-content: space-between;  
-  align-items: center;  
-  gap: 0.6rem;  
-  padding: 0.8rem 1rem 1rem;  
-  border-top: 1px solid rgba(255, 255, 255, 0.08);  
-}  
+/* ---------------------------
+   CARD ACTIONS (3 buttons)
+--------------------------- */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
 
-/* Base action button */  
-.action-btn {  
-  flex: 1;  
-  display: flex;  
-  align-items: center;  
-  justify-content: center;  
-  gap: 0.35rem;  
-  padding: 0.55rem 0;  
-  font-size: 0.85rem;  
-  font-weight: 600;  
-  border-radius: 999px;  
-  border: 1px solid rgba(255, 255, 255, 0.12);  
-  background: rgba(255, 255, 255, 0.06);  
-  color: #fff;  
-  cursor: pointer;  
-  transition: background 0.2s ease, transform 0.2s ease;  
-}  
+/* Base style for all action buttons */
+.card-actions button {
+  flex: 1;
+  padding: 0.65rem;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
 
-/* Hover / focus */  
-.action-btn:hover,  
-.action-btn:focus {  
-  background: rgba(255, 255, 255, 0.18);  
-  transform: translateY(-2px);  
-  outline: none;  
-}  
+/* Hover effect for all buttons */
+.card-actions button:hover,
+.card-actions button:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  outline: none;
+}
 
-/* Icon-only middle button (🤔) */  
-.action-btn.icon-only {  
-  flex: 0.8;  
-  font-size: 1.05rem;  
-}  
+/* Individual button colors */
+.ref-btn {
+  background: #ffeb3b;
+  color: #000;
+}
 
-/* Single action centering */  
-.card-actions.single {  
-  justify-content: center;  
-}  
+.insight-btn {
+  background: #ffd54f;
+  color: #000;
+}
 
-.card-actions.single .action-btn {  
-  max-width: 180px;  
-}  
+.comment-btn {
+  background: #25d366;
+  color: #fff;
+}
 
-/* Two actions spacing */  
-.card-actions.double .action-btn {  
-  flex: 1;  
-}  
+/* Responsive for small screens */
+@media (max-width: 480px) {
+  .card-actions {
+    flex-direction: column;
+  }
 
-/* Touch optimization */  
-@media (max-width: 480px) {  
-  .action-btn {  
-    font-size: 0.8rem;  
-    padding: 0.5rem 0;  
-  }  
+  .card-actions button {
+    width: 100%;
+  }
 }

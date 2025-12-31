@@ -1,17 +1,65 @@
 [
   {
-    "id": 1,
+    "id": "post1",
+    "title": "Creative Workspace Ideas",
+    "description": "Boost productivity and creativity with these workspace tips.",
+    "image": "images/workspace1.jpg",
+    "images": [
+      "images/workspace1.jpg",
+      "images/workspace2.jpg",
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
+    ],
+    "reference": "workspace_ref1",
+    "insight": "workspace_insight1"
+  },
+  {
+    "id": "post2",
+    "title": "Morning Rituals for Focus",
+    "description": "How starting your day right improves focus and efficiency.",
+    "image": "images/morning.jpg",
+    "images": [
+      "images/morning.jpg",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+    ],
+    "insight": "morning_insight1"
+  },
+  {
+    "id": "post3",
+    "title": "Top Design Tools",
+    "description": "Explore the best design tools used by professionals.",
+    "image": "images/tools.jpg",
+    "images": [
+      "images/tools.jpg",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+    ],
+    "reference": "design_ref1"
+  },
+  {
+    "id": "post4",
+    "title": "Quick Desk Workouts",
+    "description": "Stay active even while working from your desk.",
+    "image": "images/workout.jpg",
+    "images": [
+      "images/workout.jpg"
+    ]
+  },
+  {
+    "id": "post5",
     "title": "Creative Thinking",
     "description": "Ideas that spark innovation.",
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80",
     "images": [
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
-    "id": 2,
+    "id": "post6",
     "title": "Business Inspiration",
     "description": "Modern work and strategy ideas.",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
     "images": [
       "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=600&q=80",

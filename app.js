@@ -1,6 +1,3 @@
-// ---------------------------
-// RENDER FUNCTION (UPDATED)
-// ---------------------------
 function render(data) {
   if (!grid) return;
   grid.innerHTML = "";
@@ -10,7 +7,7 @@ function render(data) {
     card.className = "card";
     card.tabIndex = 0;
 
-    // ---------- Build carousel ----------
+    // Build carousel
     let imagesHtml = "";
     if (item.images && item.images.length > 0) {
       item.images.forEach((img, idx) => {
@@ -29,23 +26,18 @@ function render(data) {
       `;
     }
 
-    // ---------- Build action buttons ----------
     let buttonsHtml = "";
 
-    // Reference button (left)
     if (item.reference) {
       buttonsHtml += `<button class="ref-btn" onclick="window.location.href='reference.html?id=${item.reference}'">Reference</button>`;
     }
 
-    // Insight button (middle)
     if (item.insight) {
       buttonsHtml += `<button class="insight-btn" onclick="window.location.href='insight.html?id=${item.insight}'">🤔 Insight</button>`;
     }
 
-    // Comment button (right, always WhatsApp)
     buttonsHtml += `<button class="comment-btn" onclick="window.open('https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v','_blank')">Comment</button>`;
 
-    // ---------- Card template ----------
     card.innerHTML = `
       <div class="carousel">${imagesHtml}</div>
       <div class="card-content">
@@ -59,7 +51,4 @@ function render(data) {
 
     grid.appendChild(card);
   });
-
-  // Reattach tribe button events (optional)
-  attachTribeEvents();
 }

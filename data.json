@@ -1,22 +1,24 @@
-{
-  "id": "post1",
-  "title": "Creative Workspace Ideas",
-  "description": "Boost productivity and creativity with these workspace tips.",
-  "image": "https://i.postimg.cc/Z9GxxyXM/Screenshot-20260101-092800-2.jpg",
-  "images": [
-    "https://i.postimg.cc/Z9GxxyXM/Screenshot-20260101-092800-2.jpg",
-    "https://i.postimg.cc/Z9BLNLDm/Screenshot-20260101-092759-2.jpg",
-    "https://i.postimg.cc/R36TtTbx/Screenshot-20260101-092757-2.jpg",
-    "https://i.postimg.cc/qthGKGZf/Screenshot-20260101-092754-2.jpg",
-    "https://i.postimg.cc/R36TtTb5/Screenshot-20260101-092751-2.jpg",
-    "https://i.postimg.cc/d7k9C9Nb/Screenshot-20260101-092749-2.jpg",
-    "https://i.postimg.cc/Ny9xXxCW/Screenshot-20260101-092748-2.jpg",
-    "https://i.postimg.cc/yJgTRTp5/Screenshot-20260101-092746-2.jpg",
-    "https://i.postimg.cc/Y4GxFxDy/Screenshot-20260101-092743-2.jpg",
-    "https://i.postimg.cc/FfdxSxC6/Screenshot-20260101-092740-2.jpg",
-    "https://i.postimg.cc/SX2G9G1v/Screenshot-20260101-092738-2.jpg",
-    "https://i.postimg.cc/sBQJWJH6/Screenshot-20260101-092734-2.jpg"
-  ],
-  "reference": "workspace_ref1",
-  "insight": "workspace_insight1"
-}
+[
+  {
+    "id": "post1",
+    "title": "Creative Workspace Ideas",
+    "description": "Boost productivity and creativity with these workspace tips.",
+    "image": "https://i.postimg.cc/Z9GxxyXM/Screenshot-20260101-092800-2.jpg",
+    "images": [
+      "https://i.postimg.cc/Z9GxxyXM/Screenshot-20260101-092800-2.jpg",
+      "https://i.postimg.cc/Z9BLNLDm/Screenshot-20260101-092759-2.jpg",
+      "https://i.postimg.cc/R36TtTbx/Screenshot-20260101-092757-2.jpg",
+      "https://i.postimg.cc/qthGKGZf/Screenshot-20260101-092754-2.jpg",
+      "https://i.postimg.cc/R36TtTb5/Screenshot-20260101-092751-2.jpg",
+      "https://i.postimg.cc/d7k9C9Nb/Screenshot-20260101-092749-2.jpg",
+      "https://i.postimg.cc/Ny9xXxCW/Screenshot-20260101-092748-2.jpg",
+      "https://i.postimg.cc/yJgTRTp5/Screenshot-20260101-092746-2.jpg",
+      "https://i.postimg.cc/Y4GxFxDy/Screenshot-20260101-092743-2.jpg",
+      "https://i.postimg.cc/FfdxSxC6/Screenshot-20260101-092740-2.jpg",
+      "https://i.postimg.cc/SX2G9G1v/Screenshot-20260101-092738-2.jpg",
+      "https://i.postimg.cc/sBQJWJH6/Screenshot-20260101-092734-2.jpg"
+    ],
+    "reference": "workspace_ref1",
+    "insight": "workspace_insight1"
+  }
+]

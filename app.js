@@ -1,3 +1,29 @@
+// ===========================
+// DOM REFERENCES
+// ===========================
+const grid = document.getElementById("grid");
+const searchInput = document.getElementById("searchInput");
+const openAffiliateModal = document.getElementById("openAffiliateModal");
+const affiliateModal = document.getElementById("affiliateModal");
+const closeModalBtn = document.querySelector(".close-modal");
+
+let items = [];
+
+// ===========================
+// UTILITIES
+// ===========================
+function toRoman(num) {
+  const roman = [
+    "", "I", "II", "III", "IV", "V",
+    "VI", "VII", "VIII", "IX", "X",
+    "XI", "XII", "XIII", "XIV", "XV"
+  ];
+  return roman[num] || num;
+}
+
+// ===========================
+// RENDER FUNCTION
+// ===========================
 function render(data) {
   if (!grid) return;
   grid.innerHTML = "";
@@ -7,8 +33,9 @@ function render(data) {
     card.className = "card";
     card.tabIndex = 0;
 
-    // Build carousel
+    // ---------- Carousel ----------
     let imagesHtml = "";
+
     if (item.images && item.images.length > 0) {
       item.images.forEach((img, idx) => {
         imagesHtml += `
@@ -21,23 +48,40 @@ function render(data) {
     } else if (item.image) {
       imagesHtml = `
         <div class="carousel-image">
-          <img src="${item.image}" alt="${item.alt || item.title}" loading="lazy" />
+          <img src="${item.image}" alt="${item.title}" loading="lazy" />
         </div>
       `;
     }
 
+    // ---------- Buttons ----------
     let buttonsHtml = "";
 
     if (item.reference) {
-      buttonsHtml += `<button class="ref-btn" onclick="window.location.href='reference.html?id=${item.reference}'">Reference</button>`;
+      buttonsHtml += `
+        <button class="ref-btn"
+          onclick="window.location.href='reference.html?id=${item.reference}'">
+          Reference
+        </button>
+      `;
     }
 
     if (item.insight) {
-      buttonsHtml += `<button class="insight-btn" onclick="window.location.href='insight.html?id=${item.insight}'">🤔 Insight</button>`;
+      buttonsHtml += `
+        <button class="insight-btn"
+          onclick="window.location.href='insight.html?id=${item.insight}'">
+          🤔 Insight
+        </button>
+      `;
     }
 
-    buttonsHtml += `<button class="comment-btn" onclick="window.open('https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v','_blank')">Comment</button>`;
+    buttonsHtml += `
+      <button class="comment-btn"
+        onclick="window.open('https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v','_blank')">
+        Comment
+      </button>
+    `;
 
+    // ---------- Card Template ----------
     card.innerHTML = `
       <div class="carousel">${imagesHtml}</div>
       <div class="card-content">
@@ -50,5 +94,54 @@ function render(data) {
     `;
 
     grid.appendChild(card);
+  });
+}
+
+// ===========================
+// FETCH DATA
+// ===========================
+fetch("data.json")
+  .then(res => res.json())
+  .then(data => {
+    // Allow single object OR array
+    if (!Array.isArray(data)) {
+      data = [data];
+    }
+
+    items = data;
+    render(items);
+  })
+  .catch(err => console.error("Data load error:", err));
+
+// ===========================
+// SEARCH
+// ===========================
+if (searchInput) {
+  searchInput.addEventListener("input", e => {
+    const q = e.target.value.toLowerCase();
+
+    const filtered = items.filter(item =>
+      item.title.toLowerCase().includes(q) ||
+      item.description.toLowerCase().includes(q)
+    );
+
+    render(filtered);
+  });
+}
+
+// ===========================
+// AFFILIATE MODAL
+// ===========================
+if (openAffiliateModal && affiliateModal) {
+  openAffiliateModal.addEventListener("click", () => {
+    affiliateModal.classList.remove("hidden");
+    affiliateModal.setAttribute("aria-hidden", "false");
+  });
+}
+
+if (closeModalBtn && affiliateModal) {
+  closeModalBtn.addEventListener("click", () => {
+    affiliateModal.classList.add("hidden");
+    affiliateModal.setAttribute("aria-hidden", "true");
   });
 }

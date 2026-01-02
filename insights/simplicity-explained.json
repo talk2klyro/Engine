@@ -1,5 +1,19 @@
-{
-  "title": "Why Simplicity Wins",
-  "description": "People trust what they understand. This explains why simplicity in design and communication increases engagement.",
-  "images": ["simplicity1.jpg","simplicity2.jpg"]
-}
+[
+  {
+    "id": "workspace_insight1",
+    "title": "Workspace Productivity Insight",
+    "description": "Small changes in your workspace layout can improve focus and creativity by up to 30%.",
+    "images": [
+      "https://i.postimg.cc/qthGKGZf/Screenshot-20260101-092754-2.jpg",
+      "https://i.postimg.cc/R36TtTb5/Screenshot-20260101-092751-2.jpg"
+    ]
+  },
+  {
+    "id": "workspace_insight2",
+    "title": "Lighting & Mood Impact",
+    "description": "Natural lighting and appropriate desk lamp colors significantly affect mood and productivity.",
+    "images": [
+      "https://i.postimg.cc/d7k9C9Nb/Screenshot-20260101-092749-2.jpg"
+    ]
+  }
+]

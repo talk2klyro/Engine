@@ -1,60 +1,66 @@
-/* ============================= */
-/* ACCESS CODE CONFIG */
-/* ============================= */
+/* =============================
+   ACCESS CODE CONFIG
+============================= */
 
-const ACCESS_CODE = "BENTO2025"; // ← change this anytime
+const ACCESS_CODE = "BENTO2025"; // change anytime
 
-/* ============================= */
-/* ACCESS GATE LOGIC */
-/* ============================= */
+/* =============================
+   DOM REFERENCES
+============================= */
 
 const input = document.getElementById("codeInput");
 const enterBtn = document.getElementById("enterBtn");
 const error = document.getElementById("error");
 
-if (enterBtn && input) {
-  enterBtn.addEventListener("click", checkCode);
+const subscribeBtn = document.getElementById("subscribeBtn");
+const modal = document.getElementById("subscriptionModal");
+const closeModalBtn = document.getElementById("closeModal");
 
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") checkCode();
-  });
-}
+/* =============================
+   ACCESS LOGIC
+============================= */
 
 function checkCode() {
+  if (!input) return;
+
   if (input.value.trim() === ACCESS_CODE) {
     sessionStorage.setItem("hasAccess", "true");
     window.location.href = "index.html";
   } else {
-    error.textContent = "Invalid access code. Please try again.";
+    if (error) {
+      error.textContent = "Invalid access code. Please try again.";
+    }
     input.value = "";
     input.focus();
   }
 }
 
-/* ============================= */
-/* SUBSCRIPTION MODAL LOGIC */
-/* ============================= */
+if (enterBtn && input) {
+  enterBtn.addEventListener("click", checkCode);
 
-const subscribeBtn = document.getElementById("subscribeBtn");
-const modal = document.getElementById("subscriptionModal");
-const closeModal = document.getElementById("closeModal");
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") checkCode();
+  });
+}
 
-if (subscribeBtn && modal && closeModal) {
+/* =============================
+   SUBSCRIPTION MODAL (OPTIONAL)
+============================= */
+
+if (subscribeBtn && modal && closeModalBtn) {
   subscribeBtn.addEventListener("click", () => {
     modal.style.display = "flex";
     modal.setAttribute("aria-hidden", "false");
   });
 
-  closeModal.addEventListener("click", closeSubscriptionModal);
+  closeModalBtn.addEventListener("click", closeSubscriptionModal);
 
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      closeSubscriptionModal();
-    }
+  modal.addEventListener("click", e => {
+    if (e.target === modal) closeSubscriptionModal();
   });
 }
 
 function closeSubscriptionModal() {
   modal.style.display = "none";
   modal.setAttribute("aria-hidden", "true");
-}
+                                      }

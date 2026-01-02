@@ -1,4 +1,11 @@
 // ===========================
+// 🔒 ACCESS GUARD
+// ===========================
+if (sessionStorage.getItem("hasAccess") !== "true") {
+  window.location.href = "gate.html";
+}
+
+// ===========================
 // DOM REFERENCES
 // ===========================
 const grid = document.getElementById("grid");
@@ -25,8 +32,17 @@ function toRoman(num) {
 // RENDER FUNCTION
 // ===========================
 function render(data) {
-  if (!grid) return;
+  if (!grid) {
+    console.warn("Grid element not found");
+    return;
+  }
+
   grid.innerHTML = "";
+
+  if (!data.length) {
+    grid.innerHTML = "<p>No content found.</p>";
+    return;
+  }
 
   data.forEach(item => {
     const card = document.createElement("article");
@@ -36,7 +52,7 @@ function render(data) {
     // ---------- Carousel ----------
     let imagesHtml = "";
 
-    if (item.images && item.images.length > 0) {
+    if (Array.isArray(item.images) && item.images.length > 0) {
       item.images.forEach((img, idx) => {
         imagesHtml += `
           <div class="carousel-image">
@@ -76,7 +92,10 @@ function render(data) {
 
     buttonsHtml += `
       <button class="comment-btn"
-        onclick="window.open('https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v','_blank')">
+        onclick="window.open(
+          'https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v',
+          '_blank'
+        )">
         Comment
       </button>
     `;
@@ -101,17 +120,26 @@ function render(data) {
 // FETCH DATA
 // ===========================
 fetch("data.json")
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) throw new Error("Failed to load data.json");
+    return res.json();
+  })
   .then(data => {
-    // Allow single object OR array
+    // Normalize data
     if (!Array.isArray(data)) {
+      console.warn("data.json was not an array. Normalizing.");
       data = [data];
     }
 
     items = data;
     render(items);
   })
-  .catch(err => console.error("Data load error:", err));
+  .catch(err => {
+    console.error("Data load error:", err);
+    if (grid) {
+      grid.innerHTML = "<p style='color:red'>Failed to load content.</p>";
+    }
+  });
 
 // ===========================
 // SEARCH
@@ -136,6 +164,7 @@ if (openAffiliateModal && affiliateModal) {
   openAffiliateModal.addEventListener("click", () => {
     affiliateModal.classList.remove("hidden");
     affiliateModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
   });
 }
 
@@ -143,5 +172,16 @@ if (closeModalBtn && affiliateModal) {
   closeModalBtn.addEventListener("click", () => {
     affiliateModal.classList.add("hidden");
     affiliateModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  });
+}
+
+if (affiliateModal) {
+  affiliateModal.addEventListener("click", e => {
+    if (e.target === affiliateModal) {
+      affiliateModal.classList.add("hidden");
+      affiliateModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
   });
 }

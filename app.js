@@ -1,5 +1,5 @@
 // ===========================
-// 🔒 ACCESS GUARD
+// 🔒 ACCESS CONTROL
 // ===========================
 if (sessionStorage.getItem("hasAccess") !== "true") {
   window.location.href = "gate.html";
@@ -29,20 +29,24 @@ function toRoman(num) {
 }
 
 // ===========================
+// STYLE IMAGES FUNCTION
+// ===========================
+function styleCardImages() {
+  const images = document.querySelectorAll('.carousel-image img');
+  images.forEach(img => {
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+    img.loading = 'lazy';
+  });
+}
+
+// ===========================
 // RENDER FUNCTION
 // ===========================
 function render(data) {
-  if (!grid) {
-    console.warn("Grid element not found");
-    return;
-  }
-
+  if (!grid) return;
   grid.innerHTML = "";
-
-  if (!data.length) {
-    grid.innerHTML = "<p>No content found.</p>";
-    return;
-  }
 
   data.forEach(item => {
     const card = document.createElement("article");
@@ -51,12 +55,11 @@ function render(data) {
 
     // ---------- Carousel ----------
     let imagesHtml = "";
-
-    if (Array.isArray(item.images) && item.images.length > 0) {
+    if (item.images && item.images.length > 0) {
       item.images.forEach((img, idx) => {
         imagesHtml += `
           <div class="carousel-image">
-            <img src="${img}" alt="${item.title} - Image ${idx + 1}" loading="lazy" />
+            <img src="${img}" alt="${item.title} - Image ${idx + 1}" />
             <span class="roman-overlay">${toRoman(idx + 1)}</span>
           </div>
         `;
@@ -64,41 +67,20 @@ function render(data) {
     } else if (item.image) {
       imagesHtml = `
         <div class="carousel-image">
-          <img src="${item.image}" alt="${item.title}" loading="lazy" />
+          <img src="${item.image}" alt="${item.alt || item.title}" />
         </div>
       `;
     }
 
     // ---------- Buttons ----------
     let buttonsHtml = "";
-
     if (item.reference) {
-      buttonsHtml += `
-        <button class="ref-btn"
-          onclick="window.location.href='reference.html?id=${item.reference}'">
-          Reference
-        </button>
-      `;
+      buttonsHtml += `<button class="ref-btn" onclick="window.location.href='reference.html?id=${item.reference}'">Reference</button>`;
     }
-
     if (item.insight) {
-      buttonsHtml += `
-        <button class="insight-btn"
-          onclick="window.location.href='insight.html?id=${item.insight}'">
-          🤔 Insight
-        </button>
-      `;
+      buttonsHtml += `<button class="insight-btn" onclick="window.location.href='insight.html?id=${item.insight}'">🤔 Insight</button>`;
     }
-
-    buttonsHtml += `
-      <button class="comment-btn"
-        onclick="window.open(
-          'https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v',
-          '_blank'
-        )">
-        Comment
-      </button>
-    `;
+    buttonsHtml += `<button class="comment-btn" onclick="window.open('https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v','_blank')">Comment</button>`;
 
     // ---------- Card Template ----------
     card.innerHTML = `
@@ -114,31 +96,28 @@ function render(data) {
 
     grid.appendChild(card);
   });
+
+  // Reattach tribe buttons if needed
+  attachTribeEvents();
+
+  // Style images after rendering
+  styleCardImages();
 }
 
 // ===========================
 // FETCH DATA
 // ===========================
 fetch("data.json")
-  .then(res => {
-    if (!res.ok) throw new Error("Failed to load data.json");
-    return res.json();
-  })
+  .then(res => res.json())
   .then(data => {
-    // Normalize data
-    if (!Array.isArray(data)) {
-      console.warn("data.json was not an array. Normalizing.");
-      data = [data];
-    }
-
+    // Allow single object or array
+    if (!Array.isArray(data)) data = [data];
     items = data;
     render(items);
   })
   .catch(err => {
     console.error("Data load error:", err);
-    if (grid) {
-      grid.innerHTML = "<p style='color:red'>Failed to load content.</p>";
-    }
+    if (grid) grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
   });
 
 // ===========================
@@ -147,13 +126,24 @@ fetch("data.json")
 if (searchInput) {
   searchInput.addEventListener("input", e => {
     const q = e.target.value.toLowerCase();
-
     const filtered = items.filter(item =>
       item.title.toLowerCase().includes(q) ||
       item.description.toLowerCase().includes(q)
     );
-
     render(filtered);
+  });
+}
+
+// ===========================
+// TRIBE BUTTONS (Optional)
+// ===========================
+function attachTribeEvents() {
+  const tribeButtons = document.querySelectorAll(".tribe-btn");
+  tribeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const tribe = button.dataset.tribe;
+      window.location.href = `discussion.html?tribe=${encodeURIComponent(tribe)}`;
+    });
   });
 }
 
@@ -174,11 +164,17 @@ if (closeModalBtn && affiliateModal) {
     affiliateModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
   });
-}
 
-if (affiliateModal) {
   affiliateModal.addEventListener("click", e => {
     if (e.target === affiliateModal) {
+      affiliateModal.classList.add("hidden");
+      affiliateModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !affiliateModal.classList.contains("hidden")) {
       affiliateModal.classList.add("hidden");
       affiliateModal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";

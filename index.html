@@ -1,81 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Refly</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <title>Refly</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />  
+  <link rel="stylesheet" href="styles.css" />  
+</head>  <body>    <!-- TOPBAR -->    <header class="topbar">  
+    <h1>Refly</h1>  <!-- Affiliate onboarding text -->  
+<p class="affiliate-intro">  
+  “Your WhatsApp status could do more than just entertain… it could inspire and earn.<br>  
+  Thousands are already turning shares into income — don’t get left behind.”  
+</p>  
 
-<body>
+<!-- Affiliate CTA button -->  
+<button id="openAffiliateModal" class="affiliate-btn">  
+  🔥 Start sharing  
+</button>  
 
-  <!-- TOPBAR -->
-  <header class="topbar">
-    <h1 class="logo-center">Refly</h1>
+<!-- Search -->  
+<input  
+  id="searchInput"  
+  type="search"  
+  placeholder="Search ideas"  
+  aria-label="Search inspiration"  
+/>
 
-    <!-- Affiliate onboarding text -->
-    <p class="affiliate-intro">
-      “Your WhatsApp status could do more than just entertain… it could inspire and earn.<br>
-      Thousands are already turning shares into income — don’t get left behind.”
-    </p>
+  </header>    <!-- MAIN CONTENT -->    <main id="grid" class="grid" aria-live="polite"></main>    <!-- AFFILIATE MODAL -->    <div id="affiliateModal" class="modal hidden" aria-hidden="true">  
+    <div class="modal-content">  
+      <button class="close-modal" aria-label="Close modal">&times;</button>  <h2>Affiliate Program</h2>  
 
-    <!-- Affiliate CTA button -->
-    <button id="openAffiliateModal" class="affiliate-btn">
-      🔥 Start sharing
-    </button>
+  <p>  
+    “Your friends are scrolling… but what if your WhatsApp status earned you money while helping them discover valuable content?<br>  
+    If 240 see it and 170 subscribe through your link, you could earn ₦13,500 every 2 weeks.<br>  
+    🔥 Don’t let this opportunity scroll by, start sharing now!”  
+  </p>  
 
-    <!-- Search -->
-    <input
-      id="searchInput"
-      type="search"
-      placeholder="Search ideas"
-      aria-label="Search inspiration"
-    />
-  </header>
+  <a  
+    href="https://wa.me/2347013379809?text=Hello%20I%20want%20to%20join%20the%20affiliate%20program."  
+    target="_blank"  
+    rel="noopener"  
+    class="whatsapp-btn"  
+  >  
+    Chat with Us on WhatsApp  
+  </a>  
+</div>
 
-  <!-- IMAGE CARD -->
-  <div class="card-image">
-    <img src="your-image.jpg" alt="">
-  </div>
-
-  <!-- MAIN CONTENT -->
-  <main id="grid" class="grid" aria-live="polite"></main>
-
-  <!-- AFFILIATE MODAL -->
-  <div id="affiliateModal" class="modal hidden" aria-hidden="true">
-    <div class="modal-content">
-      <button class="close-modal" aria-label="Close modal">&times;</button>
-
-      <h2>Affiliate Program</h2>
-
-      <p>
-        “Your friends are scrolling… but what if your WhatsApp status earned you money while helping them discover valuable content?<br>
-        If 240 see it and 170 subscribe through your link, you could earn ₦13,500 every 2 weeks.<br>
-        🔥 Don’t let this opportunity scroll by, start sharing now!”
-      </p>
-
-      <a
-        href="https://wa.me/2347013379809?text=Hello%20I%20want%20to%20join%20the%20affiliate%20program."
-        target="_blank"
-        rel="noopener"
-        class="whatsapp-btn"
-      >
-        Chat with Us on WhatsApp
-      </a>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <a
-      href="tribe.html"
-      class="whatsapp-cta"
-      role="button"
-    >
-      Join WhatsApp Discussion Group
-    </a>
-  </footer>
-
-  <script src="app.js"></script>
-</body>
+  </div>    <!-- FOOTER -->    <footer class="footer">  
+    <a  
+      href="tribe.html"  
+      class="whatsapp-cta"  
+      role="button"  
+    >  
+      Join WhatsApp Discussion Group  
+    </a>  
+  </footer>    <script src="app.js"></script>  </body>  
 </html>

@@ -9,209 +9,204 @@ RESET & ROOT
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 :root {
-  font-size: clamp(16px, 2.5vw, 20px);
+font-size: clamp(16px, 2.5vw, 20px);
 }
 
 /* =========================
 BASE
 ========================= */
 body {
-  font-family: "Gothic A1", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0b0b0b;
-  color: #ffffff;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+font-family: "Gothic A1", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+background: #0b0b0b;
+color: #ffffff;
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+text-rendering: optimizeLegibility;
 }
 
 /* =========================
 TOPBAR
 ========================= */
 .topbar {
-  padding: 1.6rem 1.2rem 2rem;
-  background: #0f0f0f;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+padding: 1.6rem 1.2rem 2rem;
+background: #0f0f0f;
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .topbar h1 {
-  font-size: clamp(1.6rem, 4vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.8rem;
+font-size: clamp(1.6rem, 4vw, 2rem);
+font-weight: 800;
+letter-spacing: -0.02em;
+margin-bottom: 0.8rem;
 }
 
 .affiliate-intro {
-  font-size: 0.95rem;
-  color: #cfcfcf;
-  max-width: 520px;
-  margin-bottom: 1.2rem;
+font-size: 0.95rem;
+color: #cfcfcf;
+max-width: 520px;
+margin-bottom: 1.2rem;
 }
 
 /* =========================
 AFFILIATE BUTTON
 ========================= */
 .affiliate-btn {
-  background: linear-gradient(135deg, #ffffff, #eaeaea);
-  color: #000;
-  padding: 0.85rem 1.6rem;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  margin-bottom: 1.4rem;
+background: linear-gradient(135deg, #ffffff, #eaeaea);
+color: #000;
+padding: 0.85rem 1.6rem;
+border-radius: 999px;
+font-size: 0.95rem;
+font-weight: 700;
+border: none;
+cursor: pointer;
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+margin-bottom: 1.4rem;
 }
 
-.affiliate-btn:hover,
-.affiliate-btn:focus {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.6);
-  outline: none;
+.affiliate-btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 18px 55px rgba(0, 0, 0, 0.6);
 }
 
 /* =========================
 SEARCH
 ========================= */
 #searchInput {
-  width: 100%;
-  max-width: 420px;
-  padding: 0.75rem 1.1rem;
-  border-radius: 14px;
-  border: none;
-  font-size: 0.95rem;
-  background: #000;
-  color: #fff;
+width: 100%;
+max-width: 420px;
+padding: 0.75rem 1.1rem;
+border-radius: 14px;
+border: none;
+font-size: 0.95rem;
+background: #000;
+color: #fff;
 }
 
 /* =========================
 GRID / FEED
 ========================= */
 .grid {
-  max-width: 720px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
+max-width: 720px;
+margin: 2rem auto;
+padding: 0 1rem;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+gap: 1.5rem;
 }
 
 /* =========================
 CARD
 ========================= */
 .card {
-  background: #111;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+background: #111;
+border-radius: 22px;
+border: 1px solid rgba(255,255,255,0.12);
+overflow: hidden;
+transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+transform: translateY(-4px);
+box-shadow: 0 18px 45px rgba(0,0,0,0.55);
 }
 
 /* =========================
 REELS-STYLE IMAGE SYSTEM
 ========================= */
 .card-image {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
-  background: #000;
-  border-radius: 14px;
+position: relative;
+width: 100%;
+aspect-ratio: 9 / 16;
+overflow: hidden;
+background: #000;
 }
 
 .card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transform: scale(1.01);
-  transition: transform 0.4s ease;
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center;
+display: block;
+transform: scale(1.01);
 }
 
 /* Cinematic overlay */
 .card-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.05),
-    rgba(0, 0, 0, 0.35)
-  );
-  pointer-events: none;
+content: "";
+position: absolute;
+inset: 0;
+background: linear-gradient(
+to bottom,
+rgba(0, 0, 0, 0.05),
+rgba(0, 0, 0, 0.35)
+);
+pointer-events: none;
 }
 
-/* Subtle grain texture */
+/* Grain texture */
 .card-image::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  pointer-events: none;
+content: "";
+position: absolute;
+inset: 0;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+pointer-events: none;
 }
 
 /* Hover zoom */
 .card:hover .card-image img {
-  transform: scale(1.05);
+transform: scale(1.05);
+transition: transform 0.4s ease;
 }
 
 /* =========================
 CARD CONTENT
 ========================= */
 .card-content {
-  padding: 1.2rem;
+padding: 1.2rem;
 }
 
 .card-content h2 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
+font-size: 1.05rem;
+font-weight: 700;
+margin-bottom: 0.4rem;
 }
 
 .card-content p {
-  font-size: 0.9rem;
-  color: #d0d0d0;
-  margin-bottom: 0.8rem;
+font-size: 0.9rem;
+color: #d0d0d0;
+margin-bottom: 0.8rem;
 }
 
 /* =========================
 CARD ACTIONS
 ========================= */
 .card-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
+display: flex;
+gap: 0.5rem;
+margin-top: 0.8rem;
 }
 
 .card-actions button {
-  flex: 1;
-  padding: 0.65rem;
-  border-radius: 12px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+flex: 1;
+padding: 0.65rem;
+border-radius: 12px;
+font-weight: 600;
+border: none;
+cursor: pointer;
+font-size: 0.9rem;
+transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.card-actions button:hover,
-.card-actions button:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-  outline: none;
+.card-actions button:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
 .ref-btn { background: #ffeb3b; color: #000; }
@@ -222,55 +217,15 @@ CARD ACTIONS
 FOOTER
 ========================= */
 .footer {
-  padding: 2rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  text-align: center;
-}
-
-.whatsapp-cta {
-  display: inline-block;
-  background: #25d366;
-  color: #fff;
-  padding: 0.9rem 1.4rem;
-  border-radius: 999px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-/* =========================
-REDUCED MOTION
-========================= */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
+padding: 2rem 1rem;
+border-top: 1px solid rgba(255, 255, 255, 0.08);
+text-align: center;
 }
 
 /* =========================
 RESPONSIVE
 ========================= */
 @media (max-width: 480px) {
-  .topbar h1 {
-    font-size: 1.5rem;
-  }
-
-  .affiliate-intro {
-    font-size: 0.9rem;
-  }
-
-  .card-actions {
-    flex-direction: column;
-  }
-
-  .card-image {
-    aspect-ratio: 9 / 16; /* ensures mobile also sticks to Reels format */
-  }
-
-  .card-content h2 {
-    font-size: 1rem;
-  }
-
-  .card-content p {
-    font-size: 0.85rem;
-  }
+.card-actions {
+flex-direction: column;
 }

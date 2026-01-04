@@ -1,10 +1,30 @@
 /* =========================
-  FONT
+  FONT & VARIABLES
 ========================= */
 @import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800&display=swap");
 
+:root {
+  /* Colors */
+  --primary-color: #1f2937;      /* Dark gray */
+  --accent-color: #f97316;       /* Orange */
+  --bg-color: #f8f8f8;           /* Page background */
+  --card-bg: #ffffff;             /* Card background */
+  --text-color: #111827;          /* Main text */
+  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --hover-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  --hover-scale: 1.05;
+
+  /* Spacing */
+  --gap: 1rem;
+  --border-radius: 12px;
+
+  /* Typography */
+  --font-family: 'Gothic A1', sans-serif;
+  --font-size-base: clamp(14px, 1vw, 18px);
+}
+
 /* =========================
-  RESET & ROOT
+  RESET
 ========================= */
 *,
 *::before,
@@ -14,250 +34,270 @@
   box-sizing: border-box;
 }
 
-:root {
-  --primary-color: #ffffff;
-  --accent-color: #ffd54f;
-  --reference-color: #ffeb3b;
-  --comment-color: #25d366;
-  --bg-color: #0b0b0b;
-  --card-bg: #111;
-  --text-color: #d0d0d0;
-  --border-radius: 14px;
-  --shadow: 0 12px 40px rgba(0,0,0,0.45);
-  --gap: 1rem;
-  font-family: 'Gothic A1', sans-serif;
-  font-size: clamp(16px, 2.5vw, 20px);
-}
-
-/* =========================
-  BASE
-========================= */
 body {
   font-family: var(--font-family);
   background: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-base);
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+p {
+  color: var(--text-color);
 }
 
 /* =========================
   TOPBAR
 ========================= */
 .topbar {
-  padding: 1.6rem 1.2rem 2rem;
-  background: #0f0f0f;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card-bg);
+  padding: 1rem var(--gap);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .topbar h1 {
-  font-size: clamp(1.6rem, 4vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.affiliate-intro {
-  font-size: 0.95rem;
-  color: #cfcfcf;
-  max-width: 520px;
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
   text-align: center;
 }
 
-/* =========================
-  SEARCH
-========================= */
-#searchInput {
-  width: 100%;
-  max-width: 420px;
-  padding: 0.75rem 1.1rem;
+.topbar input[type="search"] {
+  padding: 0.5rem 1rem;
   border-radius: var(--border-radius);
-  border: none;
-  font-size: 0.95rem;
-  background: #000;
-  color: #fff;
+  border: 1px solid #d1d5db;
+  width: 100%;
+  max-width: 400px;
+  font-size: 1rem;
 }
 
 /* =========================
   POSTS CONTAINER
 ========================= */
 #posts-container {
-  max-width: 720px;
-  margin: 2rem auto;
-  padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: var(--gap);
+  padding: var(--gap);
+}
+
+/* =========================
+  POST
+========================= */
+.post {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: var(--gap);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.post h2 {
+  font-size: 1.4rem;
+}
+
+.post p {
+  font-size: 1rem;
 }
 
 /* =========================
   CARDS WRAPPER
 ========================= */
 .cards-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  margin-top: 0.5rem;
 }
 
 /* =========================
-  CARD
+  INDIVIDUAL CARD
 ========================= */
 .card {
   background: var(--card-bg);
   border-radius: var(--border-radius);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(0,0,0,0.55);
-}
-
-/* =========================
-  REELS-STYLE IMAGE SYSTEM
-========================= */
-.card-image {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
-  background: #000;
-  border-radius: var(--border-radius);
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transform: scale(1.01);
-  transition: transform 0.4s ease;
+  padding: 0.75rem;
+  flex: 1 1 200px;
+  min-width: 180px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   will-change: transform;
 }
 
-/* Overlay */
-.card-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.35));
-  pointer-events: none;
+.card:hover {
+  transform: scale(var(--hover-scale));
+  box-shadow: var(--hover-shadow);
 }
 
-/* Grain */
-.card-image::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  pointer-events: none;
+/* Card title & text */
+.card h3 {
+  font-size: 1.1rem;
+  color: var(--primary-color);
 }
 
-.card:hover .card-image img {
-  transform: scale(1.05);
-}
-
-/* =========================
-  CARD CONTENT
-========================= */
-.card-content {
-  padding: 1.2rem;
-}
-
-.card-content h2,
-.card-content h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-}
-
-.card-content p {
-  font-size: 0.9rem;
+.card p {
+  font-size: 0.95rem;
   color: var(--text-color);
 }
 
 /* =========================
-  POST / CARD ACTIONS
+  POST ACTION BUTTONS
 ========================= */
-.post-actions,
-.card-actions {
+.post-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 0.9rem;
+  margin-top: 0.5rem;
 }
 
-.post-actions button,
-.card-actions button {
-  flex: 1;
-  padding: 0.65rem;
-  border-radius: 12px;
-  font-weight: 600;
+.post-actions button {
+  padding: 0.5rem 0.8rem;
   border: none;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  font-weight: 600;
+  transition: transform 0.15s ease, background 0.2s ease;
+  will-change: transform;
 }
 
 .post-actions button:hover,
-.card-actions button:hover,
-.post-actions button:focus,
-.card-actions button:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+.post-actions button:focus {
+  transform: scale(1.05);
   outline: none;
 }
 
-/* Button colors */
-.btn-insight,
-.insight-btn { background: var(--accent-color); color: #000; }
-.btn-reference,
-.ref-btn { background: var(--reference-color); color: #000; }
-.btn-comment,
-.comment-btn { background: var(--comment-color); color: #fff; }
+.post-actions .btn-insight {
+  background: var(--accent-color);
+  color: #fff;
+}
+
+.post-actions .btn-reference {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.post-actions .btn-comment {
+  background: #10b981;
+  color: #fff;
+}
+
+/* Focus styles for accessibility */
+.post-actions button:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* =========================
+  MODAL (Affiliate / Comment)
+========================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: var(--gap);
+  max-width: 400px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.modal-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-content p {
+  margin-bottom: 1rem;
+}
+
+.close-modal {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
 /* =========================
   FOOTER
 ========================= */
 .footer {
-  padding: 2rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2rem var(--gap);
+  border-top: 1px solid rgba(0,0,0,0.1);
   text-align: center;
 }
 
-.whatsapp-cta {
-  display: inline-block;
-  background: #25d366;
-  color: #fff;
-  padding: 0.9rem 1.4rem;
-  border-radius: 999px;
-  font-weight: 700;
-  text-decoration: none;
+/* =========================
+  RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .cards-wrapper {
+    flex-direction: column;
+  }
+
+  .topbar input[type="search"] {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .post h2 {
+    font-size: 1.2rem;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p,
+  .post p {
+    font-size: 0.9rem;
+  }
+
+  .post-actions button {
+    flex: 1 1 100%;
+  }
 }
 
 /* =========================
   REDUCED MOTION
 ========================= */
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
-}
-
-/* =========================
-  RESPONSIVE
-========================= */
-@media (max-width: 480px) {
-  .post-actions,
-  .card-actions { flex-direction: column; }
-
-  .card-content h2,
-  .card-content h3 { font-size: 1rem; }
-
-  .card-content p { font-size: 0.85rem; }
-
-  .cards-wrapper { grid-template-columns: 1fr; }
+  * {
+    transition: none !important;
+  }
 }

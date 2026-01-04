@@ -1,152 +1,47 @@
 [
   {
-    "id": "post1",
-    "title": "Creative Workspace Ideas",
-    "description": "Boost productivity and creativity with these workspace tips.",
+    "id": "sleep_minor_death_001",
+    "title": "Sleep: The Minor Death",
+    "description": "An exploration of the spiritual journey the soul undergoes during sleep according to Islamic tradition.",
     "cards": [
       {
-        "title": "Workspace Setup",
-        "text": "Use natural light and ergonomic furniture for better focus."
+        "title": "A Temporary Separation",
+        "text": "Sleep is not merely physical rest; it is the soul being temporarily taken from the body. Every night, we stand at the edge of death as our Ruh is withdrawn."
       },
       {
-        "title": "Declutter",
-        "text": "Minimalism reduces distraction and boosts creativity."
+        "title": "The Nightly Judgment",
+        "text": "In a realm beyond our senses, a decision is made to either release the soul back until its appointed time or to keep those for whom death is decreed. No alarm or biological signal controls this return."
       },
       {
-        "title": "Add Greenery",
-        "text": "Plants improve mood and productivity."
+        "title": "Beyond the Physical Brain",
+        "text": "While neuroscience observes REM cycles and brain waves, revelation explains that the soul itself is traveling. Science studies the shadow on the wall, but the Qur'an explains what casts it."
       },
       {
-        "title": "Organize Tools",
-        "text": "Keep your essential tools within reach for efficiency."
+        "title": "The Soul’s Ascent",
+        "text": "When a person sleeps, the soul ascends rather than just imagining or dreaming. In this state, some souls are shown signs, warned, or comforted."
       },
       {
-        "title": "Personal Touch",
-        "text": "Add items that inspire you without cluttering the space."
+        "title": "A Higher Perception",
+        "text": "In sleep, the sensory filters and ego are quieted, allowing the soul to perceive truth directly. You are closer to the realm of Barzakh in sleep than when you are awake."
       },
       {
-        "title": "Zoning Areas",
-        "text": "Separate areas for work, rest, and creativity."
+        "title": "The Spiritual Weight",
+        "text": "Spiritual habits determine how the soul rises; mindfulness (Dhikr) makes it light and easy to ascend, while burdens of the heart can restrain it. Sleep reveals your true spiritual weight."
       },
       {
-        "title": "Cable Management",
-        "text": "Keep cords tidy to reduce visual distraction."
+        "title": "Seeking Protection",
+        "text": "Prophetic tradition teaches us to ask for mercy if the soul is taken and protection if it is returned. This preparation acknowledges that the soul is exposed during the night."
       },
       {
-        "title": "Comfortable Seating",
-        "text": "Invest in chairs that support posture and long hours."
+        "title": "The Daily Resurrection",
+        "text": "Waking up is a revival and a rehearsal for the final Day of Judgment. We praise the one who gives us life again after causing us to undergo a temporary death."
       },
       {
-        "title": "Inspirational Board",
-        "text": "Visual boards with goals and inspirations motivate creativity."
+        "title": "The Permanent Departure",
+        "text": "One day, the soul will not be released back to the body. If our nights are empty of remembrance or our days heavy with wrongdoing, the soul's ascent reflects that state."
       }
     ],
-    "reference": "workspace_ref1",
-    "insight": "workspace_insight1"
-  },
-  {
-    "id": "post2",
-    "title": "Morning Rituals for Focus",
-    "description": "How starting your day right improves focus and efficiency.",
-    "cards": [
-      {
-        "title": "Morning Exercise",
-        "text": "A short workout wakes up your body and brain."
-      },
-      {
-        "title": "Healthy Breakfast",
-        "text": "Fuel your day with energy and focus."
-      },
-      {
-        "title": "Meditation",
-        "text": "Five minutes of mindfulness sets a calm tone for the day."
-      },
-      {
-        "title": "Plan Your Day",
-        "text": "Write down 3 priorities to stay focused."
-      }
-    ],
-    "insight": "morning_insight1"
-  },
-  {
-    "id": "post3",
-    "title": "Top Design Tools",
-    "description": "Explore the best design tools used by professionals.",
-    "cards": [
-      {
-        "title": "Figma",
-        "text": "Collaborative interface design tool."
-      },
-      {
-        "title": "Adobe XD",
-        "text": "UI/UX design software for prototypes and wireframes."
-      },
-      {
-        "title": "Canva",
-        "text": "Easy-to-use tool for graphics and marketing visuals."
-      },
-      {
-        "title": "Sketch",
-        "text": "Popular vector design software for Mac users."
-      }
-    ],
-    "reference": "design_ref1"
-  },
-  {
-    "id": "post4",
-    "title": "Quick Desk Workouts",
-    "description": "Stay active even while working from your desk.",
-    "cards": [
-      {
-        "title": "Stretch Breaks",
-        "text": "Every hour, stretch your arms, back, and legs."
-      },
-      {
-        "title": "Chair Squats",
-        "text": "Stand up and sit down slowly 10 times."
-      },
-      {
-        "title": "Wrist Exercises",
-        "text": "Reduce strain from typing with simple wrist rotations."
-      }
-    ]
-  },
-  {
-    "id": "post5",
-    "title": "Creative Thinking",
-    "description": "Ideas that spark innovation.",
-    "cards": [
-      {
-        "title": "Brainstorm Freely",
-        "text": "Write down all ideas without judging them."
-      },
-      {
-        "title": "Mind Mapping",
-        "text": "Visualize connections between concepts."
-      },
-      {
-        "title": "Challenge Assumptions",
-        "text": "Ask 'what if?' to discover new perspectives."
-      }
-    ]
-  },
-  {
-    "id": "post6",
-    "title": "Business Inspiration",
-    "description": "Modern work and strategy ideas.",
-    "cards": [
-      {
-        "title": "Study Successful Models",
-        "text": "Analyze what makes top businesses work."
-      },
-      {
-        "title": "Adapt and Innovate",
-        "text": "Don't copy, improve on proven strategies."
-      },
-      {
-        "title": "Network Wisely",
-        "text": "Connect with people who inspire growth."
-      }
-    ]
+    "reference": "Qur'an 39:42, Sahih Bukhari",
+    "insight": "Sleep is a nightly mercy and a silent test: will the soul be returned?"
   }
 ]

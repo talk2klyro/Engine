@@ -1,5 +1,5 @@
 // ===========================
-// APP.JS – Refly (Card-Based)
+// APP.JS – Refly Card-based Posts (Refactored & Optimized)
 // ===========================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,101 +13,129 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------------------------
-  // DOM REFERENCES
+  // CONSTANTS & DOM REFERENCES
   // ---------------------------
-  const grid = document.getElementById("grid");
-  const searchInput = document.getElementById("searchInput");
+  const WHATSAPP_URL = "https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v";
 
+  const grid = document.getElementById("posts-container") || document.getElementById("grid");
+  const searchInput = document.getElementById("searchInput");
   const openAffiliateModal = document.getElementById("openAffiliateModal");
   const affiliateModal = document.getElementById("affiliateModal");
   const closeModalBtn = document.querySelector(".close-modal");
 
-  let items = [];
+  let posts = [];
 
   // ---------------------------
-  // RENDER POSTS
+  // UTILITY FUNCTIONS
   // ---------------------------
-  function render(data) {
-    if (!grid) return;
-    grid.innerHTML = "";
+  const toRoman = num => ["", "I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV"][num] || num;
 
-    data.forEach(post => {
-      const article = document.createElement("article");
-      article.className = "post";
-
-      // Header
-      article.innerHTML = `
-        <h2>${post.title}</h2>
-        <p>${post.description}</p>
-      `;
-
-      // Cards
-      if (Array.isArray(post.cards)) {
-        const cardsWrapper = document.createElement("div");
-        cardsWrapper.className = "cards-wrapper";
-
-        post.cards.forEach(card => {
-          const cardDiv = document.createElement("div");
-          cardDiv.className = "card";
-
-          cardDiv.innerHTML = `
-            <h3>${card.title}</h3>
-            <p>${card.text}</p>
-          `;
-
-          cardsWrapper.appendChild(cardDiv);
-        });
-
-        article.appendChild(cardsWrapper);
-      }
-
-      // Actions
-      const actions = document.createElement("div");
-      actions.className = "card-actions";
-
-      if (post.insight) {
-        actions.innerHTML += `
-          <button class="insight-btn"
-            onclick="window.location.href='insight.html?id=${post.insight}'">
-            🤔 Insight
-          </button>
-        `;
-      }
-
-      if (post.reference) {
-        actions.innerHTML += `
-          <button class="ref-btn"
-            onclick="window.location.href='reference.html?id=${post.reference}'">
-            Reference
-          </button>
-        `;
-      }
-
-      actions.innerHTML += `
-        <button class="comment-btn"
-          onclick="window.open('https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v','_blank')">
-          Comment
-        </button>
-      `;
-
-      article.appendChild(actions);
-      grid.appendChild(article);
-    });
+  // ---------------------------
+  // FETCH POSTS
+  // ---------------------------
+  async function loadPosts() {
+    try {
+      const res = await fetch("data.json");
+      let data = await res.json();
+      if (!Array.isArray(data)) data = [data];
+      posts = data;
+      renderPosts(posts);
+    } catch (err) {
+      console.error("Failed to load posts:", err);
+      if (grid) grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
+    }
   }
 
   // ---------------------------
-  // FETCH DATA
+  // RENDER FUNCTIONS
   // ---------------------------
-  fetch("data.json")
-    .then(res => res.json())
-    .then(data => {
-      items = Array.isArray(data) ? data : [];
-      render(items);
-    })
-    .catch(err => {
-      console.error("Failed to load data:", err);
-      grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
-    });
+  function renderPosts(postsArray) {
+    if (!grid) return;
+    grid.innerHTML = "";
+    postsArray.forEach(post => grid.appendChild(createPostElement(post)));
+  }
+
+  function createPostElement(post) {
+    const postDiv = document.createElement("div");
+    postDiv.className = "post";
+
+    // Title & Description
+    const header = document.createElement("h2");
+    header.textContent = post.title;
+    postDiv.appendChild(header);
+
+    const desc = document.createElement("p");
+    desc.textContent = post.description;
+    postDiv.appendChild(desc);
+
+    // Cards
+    const cardsWrapper = document.createElement("div");
+    cardsWrapper.className = "cards-wrapper";
+    if (Array.isArray(post.cards)) {
+      post.cards.forEach(card => cardsWrapper.appendChild(createCardElement(card)));
+    }
+    postDiv.appendChild(cardsWrapper);
+
+    // Action Buttons
+    const actionsDiv = document.createElement("div");
+    actionsDiv.className = "post-actions";
+
+    if (post.insight) actionsDiv.appendChild(createActionButton("insight", post));
+    if (post.reference) actionsDiv.appendChild(createActionButton("reference", post));
+
+    // Comment button always
+    const commentBtn = document.createElement("button");
+    commentBtn.textContent = "Comment";
+    commentBtn.className = "btn-comment";
+    commentBtn.addEventListener("click", () => openCommentModal(post.id));
+    actionsDiv.appendChild(commentBtn);
+
+    postDiv.appendChild(actionsDiv);
+
+    return postDiv;
+  }
+
+  function createCardElement(card) {
+    const cardDiv = document.createElement("div");
+    cardDiv.className = "card";
+
+    const titleEl = document.createElement("h3");
+    titleEl.textContent = card.title;
+    cardDiv.appendChild(titleEl);
+
+    const textEl = document.createElement("p");
+    textEl.textContent = card.text;
+    cardDiv.appendChild(textEl);
+
+    return cardDiv;
+  }
+
+  function createActionButton(type, post) {
+    const btn = document.createElement("button");
+    if (type === "insight") {
+      btn.textContent = "🤔 Insight";
+      btn.className = "btn-insight";
+      btn.addEventListener("click", () => window.location.href = `insight.html?id=${post.insight}`);
+    } else if (type === "reference") {
+      btn.textContent = "Reference";
+      btn.className = "btn-reference";
+      btn.addEventListener("click", () => window.location.href = `reference.html?id=${post.reference}`);
+    }
+    return btn;
+  }
+
+  // ---------------------------
+  // COMMENT MODAL (Example)
+  // ---------------------------
+  function openCommentModal(postId) {
+    const modal = document.getElementById("comment-modal");
+    if (!modal) return;
+    modal.classList.remove("hidden");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    const postIdEl = modal.querySelector(".modal-post-id");
+    if (postIdEl) postIdEl.textContent = postId;
+  }
 
   // ---------------------------
   // SEARCH
@@ -115,20 +143,18 @@ document.addEventListener("DOMContentLoaded", () => {
   if (searchInput) {
     searchInput.addEventListener("input", e => {
       const q = e.target.value.toLowerCase();
-      render(
-        items.filter(post =>
-          post.title.toLowerCase().includes(q) ||
-          post.description.toLowerCase().includes(q)
-        )
+      const filtered = posts.filter(post =>
+        post.title.toLowerCase().includes(q) ||
+        post.description.toLowerCase().includes(q)
       );
+      renderPosts(filtered);
     });
   }
 
   // ---------------------------
-  // AFFILIATE MODAL (SAFE)
+  // AFFILIATE MODAL
   // ---------------------------
   if (openAffiliateModal && affiliateModal && closeModalBtn) {
-
     const closeModal = () => {
       affiliateModal.classList.add("hidden");
       affiliateModal.setAttribute("aria-hidden", "true");
@@ -143,15 +169,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closeModalBtn.addEventListener("click", closeModal);
 
-    affiliateModal.addEventListener("click", e => {
-      if (e.target === affiliateModal) closeModal();
-    });
+    affiliateModal.addEventListener("click", e => { if (e.target === affiliateModal) closeModal(); });
 
     document.addEventListener("keydown", e => {
-      if (e.key === "Escape" && !affiliateModal.classList.contains("hidden")) {
-        closeModal();
-      }
+      if (e.key === "Escape" && !affiliateModal.classList.contains("hidden")) closeModal();
     });
   }
+
+  // ---------------------------
+  // INITIALIZE
+  // ---------------------------
+  loadPosts();
 
 });

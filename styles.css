@@ -1,30 +1,5 @@
 /* =========================
-  FONT & VARIABLES
-========================= */
-@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800&display=swap");
-
-:root {
-  /* Colors */
-  --primary-color: #1f2937;      /* Dark gray */
-  --accent-color: #f97316;       /* Orange */
-  --bg-color: #f8f8f8;           /* Page background */
-  --card-bg: #ffffff;             /* Card background */
-  --text-color: #111827;          /* Main text */
-  --shadow: 0 4px 12px rgba(0,0,0,0.1);
-  --hover-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  --hover-scale: 1.05;
-
-  /* Spacing */
-  --gap: 1rem;
-  --border-radius: 12px;
-
-  /* Typography */
-  --font-family: 'Gothic A1', sans-serif;
-  --font-size-base: clamp(14px, 1vw, 18px);
-}
-
-/* =========================
-  RESET
+RESET
 ========================= */
 *,
 *::before,
@@ -34,131 +9,186 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: var(--font-family);
-  background: var(--bg-color);
-  color: var(--text-color);
-  line-height: 1.5;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-size: var(--font-size-base);
-}
+/* =========================
+DESIGN TOKENS (Supervisor System)
+========================= */
+:root {
+  /* === Base === */
+  --void-black: #0B0E11;
+  --charcoal: #161A1F;
+  --feather-white: #F5F7F6;
+  --coconut-cream: #EFE7D8;
 
-/* Headings */
-h1, h2, h3 {
-  font-weight: 700;
-  color: var(--primary-color);
-}
+  /* === Accents === */
+  --soft-teal: #5FA8A3;
+  --olive-acid: #7A8F3A;
+  --warm-brown: #8B5E3C;
+  --rust-orange: #C45A2A;
+  --clay-red: #9E4A3C;
 
-p {
-  color: var(--text-color);
+  /* === Signals === */
+  --muted-yellow: #E3C76A;
+  --burnt-gold: #B98A3A;
+  --vintage-bronze: #8C6A3D;
+  --sky-gray: #C9D1D9;
+  --web-gray: #9AA1A8;
+
+  /* === Gradients === */
+  --grad-breath: linear-gradient(135deg, var(--soft-teal), var(--sky-gray));
+  --grad-autumn: linear-gradient(135deg, var(--warm-brown), var(--rust-orange));
+  --grad-voice: linear-gradient(135deg, var(--burnt-gold), var(--muted-yellow));
+  --grad-void: linear-gradient(180deg, var(--charcoal), var(--void-black));
+
+  /* === Card Tokens === */
+  --card-bg: var(--grad-void);
+  --card-title: var(--feather-white);
+  --card-text: var(--sky-gray);
+  --card-muted: var(--web-gray);
+
+  --card-radius: 16px;
+  --card-border: 1px solid rgba(255, 255, 255, 0.06);
+
+  --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  --card-shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.5);
+
+  --card-transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  font-family: "Gothic A1", system-ui, sans-serif;
+  font-size: clamp(15px, 1vw, 18px);
 }
 
 /* =========================
-  TOPBAR
+BASE
+========================= */
+body {
+  background: var(--void-black);
+  color: var(--card-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* =========================
+TOPBAR
 ========================= */
 .topbar {
-  background: var(--card-bg);
-  padding: 1rem var(--gap);
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: center;
+  background: var(--charcoal);
+  padding: 1.2rem;
+  border-bottom: var(--card-border);
 }
 
 .topbar h1 {
-  font-size: clamp(1.5rem, 4vw, 1.8rem);
+  color: var(--feather-white);
   text-align: center;
+  font-size: 1.8rem;
 }
 
 .topbar input[type="search"] {
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius);
-  border: 1px solid #d1d5db;
+  margin: 0.75rem auto 0;
+  display: block;
   width: 100%;
-  max-width: 400px;
-  font-size: 1rem;
+  max-width: 420px;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: #000;
+  color: #fff;
 }
 
 /* =========================
-  POSTS CONTAINER
+POSTS CONTAINER
 ========================= */
-#posts-container {
+#posts-container,
+#grid {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
-  padding: var(--gap);
+  gap: 1.5rem;
 }
 
 /* =========================
-  POST
+POST
 ========================= */
 .post {
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
-  padding: var(--gap);
-  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
 .post h2 {
+  color: var(--feather-white);
   font-size: 1.4rem;
 }
 
 .post p {
-  font-size: 1rem;
+  color: var(--card-muted);
+  max-width: 70ch;
 }
 
 /* =========================
-  CARDS WRAPPER
+CARDS WRAPPER
 ========================= */
 .cards-wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap);
-  margin-top: 0.5rem;
+  gap: 1rem;
 }
 
 /* =========================
-  INDIVIDUAL CARD
+CARD (CORE COMPONENT)
 ========================= */
 .card {
   background: var(--card-bg);
-  border-radius: var(--border-radius);
-  padding: 0.75rem;
-  flex: 1 1 200px;
-  min-width: 180px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  will-change: transform;
+  border-radius: var(--card-radius);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  padding: 1.25rem;
+
+  flex: 1 1 220px;
+  min-width: 200px;
+
+  color: var(--card-text);
+  position: relative;
+  overflow: hidden;
+
+  transition: var(--card-transition);
 }
 
 .card:hover {
-  transform: scale(var(--hover-scale));
-  box-shadow: var(--hover-shadow);
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
 }
 
-/* Card title & text */
+/* Gradient glow */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--grad-breath);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 0.08;
+}
+
+/* Card content */
 .card h3 {
-  font-size: 1.1rem;
-  color: var(--primary-color);
+  color: var(--card-title);
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
 }
 
 .card p {
   font-size: 0.95rem;
-  color: var(--text-color);
+  color: var(--card-muted);
 }
 
 /* =========================
-  POST ACTION BUTTONS
+POST ACTIONS
 ========================= */
 .post-actions {
   display: flex;
@@ -168,52 +198,44 @@ p {
 }
 
 .post-actions button {
-  padding: 0.5rem 0.8rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
   border: none;
-  border-radius: var(--border-radius);
   cursor: pointer;
   font-weight: 600;
-  transition: transform 0.15s ease, background 0.2s ease;
-  will-change: transform;
+  font-size: 0.9rem;
+  transition: transform 0.15s ease;
 }
 
-.post-actions button:hover,
-.post-actions button:focus {
-  transform: scale(1.05);
-  outline: none;
+.post-actions button:hover {
+  transform: translateY(-2px);
 }
 
-.post-actions .btn-insight {
-  background: var(--accent-color);
+.btn-insight {
+  background: var(--soft-teal);
+  color: #000;
+}
+
+.btn-reference {
+  background: var(--burnt-gold);
+  color: #000;
+}
+
+.btn-comment {
+  background: #25d366;
   color: #fff;
-}
-
-.post-actions .btn-reference {
-  background: #3b82f6;
-  color: #fff;
-}
-
-.post-actions .btn-comment {
-  background: #10b981;
-  color: #fff;
-}
-
-/* Focus styles for accessibility */
-.post-actions button:focus {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
 }
 
 /* =========================
-  MODAL (Affiliate / Comment)
+MODAL
 ========================= */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 999;
 }
 
@@ -222,82 +244,39 @@ p {
 }
 
 .modal-content {
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
-  padding: var(--gap);
-  max-width: 400px;
+  background: var(--charcoal);
+  border-radius: var(--card-radius);
+  padding: 1.5rem;
+  max-width: 420px;
   width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: var(--shadow);
-  position: relative;
-}
-
-.modal-content h2 {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.modal-content p {
-  margin-bottom: 1rem;
+  color: var(--card-text);
 }
 
 .close-modal {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.75rem;
   background: none;
   border: none;
+  color: var(--feather-white);
   font-size: 1.5rem;
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
   cursor: pointer;
 }
 
 /* =========================
-  FOOTER
-========================= */
-.footer {
-  padding: 2rem var(--gap);
-  border-top: 1px solid rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-/* =========================
-  RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  .cards-wrapper {
-    flex-direction: column;
-  }
-
-  .topbar input[type="search"] {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .post h2 {
-    font-size: 1.2rem;
-  }
-
-  .card h3 {
-    font-size: 1rem;
-  }
-
-  .card p,
-  .post p {
-    font-size: 0.9rem;
-  }
-
-  .post-actions button {
-    flex: 1 1 100%;
-  }
-}
-
-/* =========================
-  REDUCED MOTION
+ACCESSIBILITY
 ========================= */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
+  }
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .cards-wrapper {
+    flex-direction: column;
   }
 }

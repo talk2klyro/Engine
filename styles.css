@@ -1,11 +1,31 @@
-/* =========================================================
-   REFY / CARD DESIGN SYSTEM
-   Palette + Gradients + Glow Utilities
-   ========================================================= */
+/* =========================
+  FONT & VARIABLES
+========================= */
+@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800&display=swap");
+
+:root {
+  /* Colors */
+  --primary-color: #2C2C2C;      /* Deep Charcoal */
+  --accent-color: #E26D5C;       /* Warm Coral */
+  --bg-color: #f8f8f8;           /* Page background */
+  --card-bg: #AAB8C2;            /* Calm Blue Gray fallback for cards */
+  --text-color: #FFFFFF;         /* White text on gradient cards */
+  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --hover-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  --hover-scale: 1.05;
+
+  /* Spacing */
+  --gap: 1rem;
+  --border-radius: 12px;
+
+  /* Typography */
+  --font-family: 'Gothic A1', sans-serif;
+  --font-size-base: clamp(14px, 1vw, 18px);
+}
 
 /* =========================
-   RESET & ROOT
-   ========================= */
+  RESET
+========================= */
 *,
 *::before,
 *::after {
@@ -14,94 +34,58 @@
   box-sizing: border-box;
 }
 
-:root {
-  /* === Base Colors === */
-  --void-black: #0B0E11;
-  --charcoal: #161A1F;
-  --feather-white: #F5F7F6;
-  --coconut-cream: #EFE7D8;
-
-  /* === Organic Accents === */
-  --soft-teal: #5FA8A3;
-  --olive-acid: #7A8F3A;
-  --warm-brown: #8B5E3C;
-  --rust-orange: #C45A2A;
-  --clay-red: #9E4A3C;
-
-  /* === Signal / Voice === */
-  --muted-yellow: #E3C76A;
-  --burnt-gold: #B98A3A;
-  --vintage-bronze: #8C6A3D;
-  --sky-gray: #C9D1D9;
-  --web-gray: #9AA1A8;
-
-  /* === Gradients === */
-  --grad-breath: linear-gradient(135deg, var(--soft-teal), var(--sky-gray));
-  --grad-autumn: linear-gradient(135deg, var(--warm-brown), var(--rust-orange));
-  --grad-voice: linear-gradient(135deg, var(--burnt-gold), var(--muted-yellow));
-  --grad-void: linear-gradient(180deg, var(--charcoal), var(--void-black));
-
-  /* === Card Tokens === */
-  --card-radius: 16px;
-  --card-border: 1px solid rgba(255,255,255,0.06);
-  --card-shadow: 0 12px 30px rgba(0,0,0,0.35);
-  --card-shadow-hover: 0 18px 45px rgba(0,0,0,0.5);
-  --card-transition: all 0.25s ease;
-
-  --gap: 1rem;
-
-  font-family: 'Gothic A1', system-ui, sans-serif;
-  font-size: clamp(14px, 1vw, 18px);
-}
-
-/* =========================
-   BODY & BASE
-   ========================= */
 body {
-  background: var(--void-black);
-  color: var(--feather-white);
+  font-family: var(--font-family);
+  background: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  font-size: var(--font-size-base);
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+p {
+  color: var(--text-color);
 }
 
 /* =========================
-   TOPBAR
-   ========================= */
+  TOPBAR
+========================= */
 .topbar {
-  background: var(--charcoal);
+  background: var(--card-bg);
   padding: 1rem var(--gap);
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .topbar h1 {
-  font-size: 1.8rem;
-  color: var(--feather-white);
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
   text-align: center;
 }
 
 .topbar input[type="search"] {
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #d1d5db;
   width: 100%;
   max-width: 400px;
-  padding: 0.5rem 1rem;
-  border-radius: var(--card-radius);
-  border: 1px solid var(--web-gray);
-  background: var(--void-black);
-  color: var(--feather-white);
+  font-size: 1rem;
 }
 
 /* =========================
-   POSTS CONTAINER
-   ========================= */
-#posts-container,
-#grid {
+  POSTS CONTAINER
+========================= */
+#posts-container {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
@@ -109,31 +93,29 @@ body {
 }
 
 /* =========================
-   POST
-   ========================= */
+  POST
+========================= */
 .post {
-  background: var(--charcoal);
-  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
   padding: var(--gap);
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
 .post h2 {
-  font-size: 1.5rem;
-  color: var(--feather-white);
+  font-size: 1.4rem;
 }
 
 .post p {
   font-size: 1rem;
-  color: var(--sky-gray);
 }
 
 /* =========================
-   CARDS WRAPPER
-   ========================= */
+  CARDS WRAPPER
+========================= */
 .cards-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -142,84 +124,53 @@ body {
 }
 
 /* =========================
-   CARD
-   ========================= */
+  INDIVIDUAL CARD (Gradient Upgrade)
+========================= */
 .card {
-  position: relative;
-  overflow: hidden;
-  padding: 1.5rem;
-  border-radius: var(--card-radius);
-  border: var(--card-border);
-  background: var(--grad-void);
-  color: var(--feather-white);
-  box-shadow: var(--card-shadow);
-  transition: var(--card-transition);
-}
-
-.card-hover {
+  background: linear-gradient(
+    135deg,
+    #2C2C2C,       /* Deep Charcoal */
+    #AAB8C2,       /* Calm Blue Gray */
+    #E26D5C        /* Warm Coral */
+  );
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  flex: 1 1 200px;
+  min-width: 180px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+  will-change: transform, background;
+  color: var(--text-color);
 }
 
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--card-shadow-hover);
+.card:hover {
+  transform: scale(var(--hover-scale));
+  box-shadow: var(--hover-shadow);
+  background: linear-gradient(
+    135deg,
+    #383838,       /* Slightly lighter charcoal */
+    #BCC8CE,       /* Lighter Calm Blue Gray */
+    #F08270        /* Brighter Warm Coral */
+  );
 }
 
-/* =========================
-   CARD TYPOGRAPHY
-   ========================= */
-.card h1,
-.card h2,
 .card h3 {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--feather-white);
+  font-size: 1.1rem;
+  color: var(--text-color);
 }
 
 .card p {
-  margin: 0;
   font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--sky-gray);
+  color: rgba(255,255,255,0.85);
 }
 
 /* =========================
-   GRADIENT GLOW & HOVER
-   ========================= */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    var(--soft-teal),
-    var(--rust-orange),
-    var(--burnt-gold)
-  );
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.card-hover:hover::before {
-  opacity: 0.12;
-}
-
-/* Animated gradient option */
-.card-glow-animated::before {
-  background-size: 300% 300%;
-  animation: gradientShift 6s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* =========================
-   POST ACTION BUTTONS
-   ========================= */
+  POST ACTION BUTTONS (Gradient Upgrade)
+========================= */
 .post-actions {
   display: flex;
   flex-wrap: wrap;
@@ -230,59 +181,130 @@ body {
 .post-actions button {
   padding: 0.5rem 0.8rem;
   border: none;
-  border-radius: var(--card-radius);
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-weight: 600;
   transition: transform 0.15s ease, background 0.2s ease;
+  will-change: transform;
 }
 
-.btn-insight { background: var(--soft-teal); color: #0B0E11; }
-.btn-reference { background: var(--rust-orange); color: #FEFEFE; }
-.btn-comment { background: var(--burnt-gold); color: #0B0E11; }
+.post-actions .btn-insight {
+  background: linear-gradient(90deg, #2C2C2C, #E26D5C);
+  color: #FFFFFF;
+}
 
-.post-actions button:hover {
+.post-actions .btn-reference {
+  background: linear-gradient(90deg, #AAB8C2, #E26D5C);
+  color: #FFFFFF;
+}
+
+.post-actions .btn-comment {
+  background: linear-gradient(90deg, #E26D5C, #F3D9C1);
+  color: #111827;
+}
+
+/* Button hover effect */
+.post-actions button:hover,
+.post-actions button:focus {
   transform: scale(1.05);
+  outline: none;
+  filter: brightness(1.1);
 }
 
 /* =========================
-   AFFILIATE / MODAL TEXT FIX
-   ========================= */
+  MODAL
+========================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
 .modal-content {
-  background: var(--charcoal);
-  color: var(--feather-white);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: var(--gap);
+  max-width: 400px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+  position: relative;
 }
 
-.modal-content h2,
+.modal-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
 .modal-content p {
-  color: var(--feather-white);
+  margin-bottom: 1rem;
+}
+
+.close-modal {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 /* =========================
-   SHADOW & RADIUS UTILITIES
-   ========================= */
-.rounded-lg { border-radius: 16px; }
-.rounded-xl { border-radius: 20px; }
-.shadow-soft { box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-.shadow-strong { box-shadow: 0 18px 45px rgba(0,0,0,0.55); }
+  FOOTER
+========================= */
+.footer {
+  padding: 2rem var(--gap);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  text-align: center;
+}
 
 /* =========================
-   RESPONSIVE
-   ========================= */
+  RESPONSIVE
+========================= */
 @media (max-width: 768px) {
-  .cards-wrapper { flex-direction: column; }
-  .topbar input[type="search"] { max-width: 100%; }
+  .cards-wrapper {
+    flex-direction: column;
+  }
+
+  .topbar input[type="search"] {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .post h2 {
+    font-size: 1.2rem;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p,
+  .post p {
+    font-size: 0.9rem;
+  }
+
+  .post-actions button {
+    flex: 1 1 100%;
+  }
 }
 
 /* =========================
-   MICRO INTERACTIONS
-   ========================= */
-.hover-tilt:hover { transform: translateY(-4px) rotateX(2deg); }
-.fade-in {
-  animation: fadeIn 0.4s ease forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  REDUCED MOTION
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }

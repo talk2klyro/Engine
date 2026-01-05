@@ -1,34 +1,34 @@
 /* =========================================================
-   REFY / CARD DESIGN SYSTEM – PRODUCTION READY
-   Palette + Gradients + Utilities + Layout + Interactions
+   REFY / CARD DESIGN SYSTEM
+   Palette + Gradients + Glow Utilities
    ========================================================= */
 
 /* =========================
-   RESET & ROOT VARIABLES
-========================= */
+   RESET & ROOT
+   ========================= */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-  /* === Base / Foundation === */
+  /* === Base Colors === */
   --void-black: #0B0E11;
   --charcoal: #161A1F;
   --feather-white: #F5F7F6;
   --coconut-cream: #EFE7D8;
 
-  /* === Organic / Nature Accents === */
+  /* === Organic Accents === */
   --soft-teal: #5FA8A3;
   --olive-acid: #7A8F3A;
   --warm-brown: #8B5E3C;
   --rust-orange: #C45A2A;
   --clay-red: #9E4A3C;
 
-  /* === Signal / Voice Accents === */
+  /* === Signal / Voice === */
   --muted-yellow: #E3C76A;
   --burnt-gold: #B98A3A;
   --vintage-bronze: #8C6A3D;
@@ -42,62 +42,64 @@
   --grad-void: linear-gradient(180deg, var(--charcoal), var(--void-black));
 
   /* === Card Tokens === */
-  --card-bg: var(--grad-void);
-  --card-bg-light: var(--feather-white);
   --card-radius: 16px;
-  --card-border: 1px solid rgba(255, 255, 255, 0.06);
+  --card-border: 1px solid rgba(255,255,255,0.06);
   --card-shadow: 0 12px 30px rgba(0,0,0,0.35);
   --card-shadow-hover: 0 18px 45px rgba(0,0,0,0.5);
   --card-transition: all 0.25s ease;
 
-  /* Spacing */
   --gap: 1rem;
+
+  font-family: 'Gothic A1', system-ui, sans-serif;
+  font-size: clamp(14px, 1vw, 18px);
 }
 
 /* =========================
-   BODY & LAYOUT
-========================= */
+   BODY & BASE
+   ========================= */
 body {
-  font-family: 'Gothic A1', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--void-black);
   color: var(--feather-white);
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* TOPBAR */
+/* =========================
+   TOPBAR
+   ========================= */
 .topbar {
   background: var(--charcoal);
-  padding: 1.5rem var(--gap);
+  padding: 1rem var(--gap);
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
 }
 
 .topbar h1 {
-  font-size: clamp(1.6rem, 4vw, 2rem);
-  text-align: center;
-  font-weight: 800;
+  font-size: 1.8rem;
   color: var(--feather-white);
+  text-align: center;
 }
 
 .topbar input[type="search"] {
+  width: 100%;
+  max-width: 400px;
   padding: 0.5rem 1rem;
   border-radius: var(--card-radius);
   border: 1px solid var(--web-gray);
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  background: var(--charcoal);
+  background: var(--void-black);
   color: var(--feather-white);
 }
 
 /* =========================
-   POSTS CONTAINER & GRID
-========================= */
+   POSTS CONTAINER
+   ========================= */
 #posts-container,
 #grid {
   display: flex;
@@ -106,8 +108,11 @@ body {
   padding: var(--gap);
 }
 
+/* =========================
+   POST
+   ========================= */
 .post {
-  background: var(--card-bg-light);
+  background: var(--charcoal);
   border-radius: var(--card-radius);
   padding: var(--gap);
   box-shadow: var(--card-shadow);
@@ -118,16 +123,17 @@ body {
 
 .post h2 {
   font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--charcoal);
+  color: var(--feather-white);
 }
 
 .post p {
   font-size: 1rem;
-  color: var(--web-gray);
+  color: var(--sky-gray);
 }
 
-/* Cards Wrapper */
+/* =========================
+   CARDS WRAPPER
+   ========================= */
 .cards-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -137,16 +143,16 @@ body {
 
 /* =========================
    CARD
-========================= */
+   ========================= */
 .card {
   position: relative;
   overflow: hidden;
   padding: 1.5rem;
   border-radius: var(--card-radius);
   border: var(--card-border);
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
+  background: var(--grad-void);
   color: var(--feather-white);
+  box-shadow: var(--card-shadow);
   transition: var(--card-transition);
 }
 
@@ -159,24 +165,13 @@ body {
   box-shadow: var(--card-shadow-hover);
 }
 
-/* Gradient Glow Overlay */
-.glow-breath::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--grad-breath);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
-}
-
-.glow-breath:hover::before {
-  opacity: 0.08;
-}
-
-/* Card Typography */
-.card h1, .card h2, .card h3 {
-  margin: 0 0 0.5rem;
+/* =========================
+   CARD TYPOGRAPHY
+   ========================= */
+.card h1,
+.card h2,
+.card h3 {
+  margin-bottom: 0.5rem;
   font-weight: 600;
   color: var(--feather-white);
 }
@@ -189,10 +184,45 @@ body {
 }
 
 /* =========================
+   GRADIENT GLOW & HOVER
+   ========================= */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    var(--soft-teal),
+    var(--rust-orange),
+    var(--burnt-gold)
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.card-hover:hover::before {
+  opacity: 0.12;
+}
+
+/* Animated gradient option */
+.card-glow-animated::before {
+  background-size: 300% 300%;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =========================
    POST ACTION BUTTONS
-========================= */
+   ========================= */
 .post-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
@@ -206,82 +236,48 @@ body {
   transition: transform 0.15s ease, background 0.2s ease;
 }
 
-.btn-insight { background: var(--soft-teal); color: var(--charcoal); }
-.btn-reference { background: var(--rust-orange); color: var(--feather-white); }
-.btn-comment { background: var(--burnt-gold); color: var(--charcoal); }
+.btn-insight { background: var(--soft-teal); color: #0B0E11; }
+.btn-reference { background: var(--rust-orange); color: #FEFEFE; }
+.btn-comment { background: var(--burnt-gold); color: #0B0E11; }
 
 .post-actions button:hover {
   transform: scale(1.05);
 }
 
 /* =========================
-   AFFILIATE / COMMENT MODALS
-========================= */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal.hidden {
-  display: none;
-}
-
+   AFFILIATE / MODAL TEXT FIX
+   ========================= */
 .modal-content {
-  background: var(--card-bg-light);
-  border-radius: var(--card-radius);
-  padding: var(--gap);
-  max-width: 400px;
-  width: 90%;
-  position: relative;
-  box-shadow: var(--card-shadow);
+  background: var(--charcoal);
+  color: var(--feather-white);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
-.close-modal {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.75rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+.modal-content h2,
+.modal-content p {
+  color: var(--feather-white);
 }
 
 /* =========================
-   SHADOW & BORDER UTILITIES
-========================= */
+   SHADOW & RADIUS UTILITIES
+   ========================= */
 .rounded-lg { border-radius: 16px; }
 .rounded-xl { border-radius: 20px; }
+.shadow-soft { box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.shadow-strong { box-shadow: 0 18px 45px rgba(0,0,0,0.55); }
 
-.shadow-soft { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); }
-.shadow-strong { box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55); }
-
-.border-grad {
-  position: relative;
-}
-
-.border-grad::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: var(--card-radius);
-  background: var(--grad-voice);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  pointer-events: none;
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 768px) {
+  .cards-wrapper { flex-direction: column; }
+  .topbar input[type="search"] { max-width: 100%; }
 }
 
 /* =========================
    MICRO INTERACTIONS
-========================= */
+   ========================= */
 .hover-tilt:hover { transform: translateY(-4px) rotateX(2deg); }
-
 .fade-in {
   animation: fadeIn 0.4s ease forwards;
 }
@@ -289,19 +285,4 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  .cards-wrapper {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .topbar h1 { font-size: 1.5rem; }
-  .card h3 { font-size: 1rem; }
-  .card p { font-size: 0.85rem; }
 }

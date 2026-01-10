@@ -1,125 +1,124 @@
-‎{
-‎  "posts": [
-‎    {
-‎      "id": "post-prank-1",
-‎      "title": "This Prank Went Too Far 😭",
-‎      "category": "Pranks",
-‎      "description": "Everyone laughed… until the ending.",
-‎      "cards": [
-‎        {
-‎          "type": "video",
-‎          "title": "Prank clip",
-‎          "video": "https://youtube.com/shorts/FrnNbt57PVI?si=LXdaD6Lov6WHDD9y",
-‎          "thumbnail": "https://img.youtube.com/vi/FrnNbt57PVI/maxresdefault.jpg",
-‎          "locked": false
-‎        },
-‎        {
-‎          "type": "text",
-‎          "title": "Why this works",
-‎          "text": "Shock + delayed consequence triggers emotional retention and replays."
-‎        }
-‎      ]
-‎    },
-‎    {
-‎      "id": "post-reaction-1",
-‎      "title": "She Thought It Was Fake… It Wasn’t 😳",
-‎      "category": "Funny Reactions",
-‎      "description": "Watch her face change in seconds.",
-‎      "cards": [
-‎        {
-‎          "type": "video",
-‎          "title": "Instant reaction",
-‎          "video": "https://youtube.com/shorts/0XHJC66RytI?si=hBc8Kvyy-1fwTqsW",
-‎          "thumbnail": "https://img.youtube.com/vi/0XHJC66RytI/maxresdefault.jpg",
-‎          "locked": false
-‎        },
-‎        {
-‎          "type": "text",
-‎          "title": "Psychology",
-‎          "text": "Expectation violation creates viral-worthy facial reactions."
-‎        }
-‎      ]
-‎    },
-‎    {
-‎      "id": "post-hidden-1",
-‎      "title": "He Didn’t Know He Was Being Filmed 😂",
-‎      "category": "Hidden Camera",
-‎      "description": "This moment went viral for a reason.",
-‎      "cards": [
-‎        {
-‎          "type": "video",
-‎          "title": "Hidden camera clip",
-‎          "video": "https://youtube.com/shorts/3Zl1eKotwkY?si=eoMMgTvSPLpggivH",
-‎          "thumbnail": "https://img.youtube.com/vi/3Zl1eKotwkY/maxresdefault.jpg",
-‎          "locked": false
-‎        },
-‎        {
-‎          "type": "text",
-‎          "title": "Why people share",
-‎          "text": "Unfiltered authenticity beats scripted content every time."
-‎        }
-‎      ]
-‎    },
-‎    {
-‎      "id": "post-ending-1",
-‎      "title": "Wait Till You See the Last 2 Seconds 😱",
-‎      "category": "Unexpected Endings",
-‎      "description": "Nobody saw this coming.",
-‎      "cards": [
-‎        {
-‎          "type": "video",
-‎          "title": "Unexpected twist",
-‎          "video": "https://youtube.com/shorts/N2xA1bkuNnQ?si=MUAeShybdzqRPVPf",
-‎          "thumbnail": "https://img.youtube.com/vi/N2xA1bkuNnQ/maxresdefault.jpg",
-‎          "locked": false
-‎        },
-‎        {
-‎          "type": "text",
-‎          "title": "Hook strategy",
-‎          "text": "Delayed payoff increases average watch time dramatically."
-‎        }
-‎      ]
-‎    },
-‎    {
-‎      "id": "post-prank-2",
-‎      "title": "They Regretted This Prank Instantly 😬",
-‎      "category": "Pranks",
-‎      "description": "This escalated very fast.",
-‎      "cards": [
-‎        {
-‎          "type": "video",
-‎          "title": "Prank gone wrong",
-‎          "video": "https://youtube.com/shorts/Ccb0898O3WI?si=n0DfvtHnbKIzveYp",
-‎          "thumbnail": "https://img.youtube.com/vi/Ccb0898O3WI/maxresdefault.jpg",
-‎          "locked": false
-‎        },
-‎        {
-‎          "type": "text",
-‎          "title": "Lesson",
-‎          "text": "Escalation creates tension but risks backlash."
-‎        }
-‎      ]
-‎    },
-‎    {
-‎      "id": "post-reaction-2",
-‎      "title": "Funniest Reaction You’ll See Today 🤣",
-‎      "category": "Funny Reactions",
-‎      "description": "Pure, uncontrollable laughter.",
-‎      "cards": [
-‎        {
-‎          "type": "video",
-‎          "title": "Can’t stop laughing",
-‎          "video": "https://youtube.com/shorts/kz5AN6jGknM?si=n64VXCs5Vygeg4l_",
-‎          "thumbnail": "https://img.youtube.com/vi/kz5AN6jGknM/maxresdefault.jpg",
-‎          "locked": false
-‎        },
-‎        {
-‎          "type": "text",
-‎          "title": "Why humor spreads",
-‎          "text": "Laughter activates social bonding and instant sharing."
-‎        }
-‎      ]
-‎    }
-‎  ]
-‎}
-‎
+{
+  "posts": [
+    {
+      "id": "post-prank-1",
+      "title": "This Prank Shocked Everyone 😭",
+      "category": "Pranks",
+      "description": "They didn’t expect this ending at all.",
+      "cards": [
+        {
+          "type": "video",
+          "title": "Prank went too far",
+          "video": "https://youtube.com/shorts/FrnNbt57PVI?si=LXdaD6Lov6WHDD9y",
+          "thumbnail": "https://img.youtube.com/vi/FrnNbt57PVI/maxresdefault.jpg",
+          "locked": false
+        },
+        {
+          "type": "text",
+          "title": "Why it works",
+          "text": "Sudden emotional reversal forces viewers to rewatch."
+        }
+      ]
+    },
+    {
+      "id": "post-reaction-1",
+      "title": "Her Face Changed Instantly 😳",
+      "category": "Funny Reactions",
+      "description": "This reaction happened in seconds.",
+      "cards": [
+        {
+          "type": "video",
+          "title": "Unexpected reaction",
+          "video": "https://youtube.com/shorts/0XHJC66RytI?si=hBc8Kvyy-1fwTqsW",
+          "thumbnail": "https://img.youtube.com/vi/0XHJC66RytI/maxresdefault.jpg",
+          "locked": false
+        },
+        {
+          "type": "text",
+          "title": "Psychology",
+          "text": "Expectation shock creates viral facial reactions."
+        }
+      ]
+    },
+    {
+      "id": "post-hidden-1",
+      "title": "He Didn’t Know He Was Being Watched 😂",
+      "category": "Hidden Camera",
+      "description": "Pure, unfiltered behavior.",
+      "cards": [
+        {
+          "type": "video",
+          "title": "Caught off guard",
+          "video": "https://youtube.com/shorts/3Zl1eKotwkY?si=eoMMgTvSPLpggivH",
+          "thumbnail": "https://img.youtube.com/vi/3Zl1eKotwkY/maxresdefault.jpg",
+          "locked": false
+        },
+        {
+          "type": "text",
+          "title": "Share trigger",
+          "text": "Authenticity beats scripted content every time."
+        }
+      ]
+    },
+    {
+      "id": "post-ending-1",
+      "title": "Wait for the Last Moment 😱",
+      "category": "Unexpected Endings",
+      "description": "The ending changes everything.",
+      "cards": [
+        {
+          "type": "video",
+          "title": "Unexpected ending",
+          "video": "https://youtube.com/shorts/N2xA1bkuNnQ?si=MUAeShybdzqRPVPf",
+          "thumbnail": "https://img.youtube.com/vi/N2xA1bkuNnQ/maxresdefault.jpg",
+          "locked": false
+        },
+        {
+          "type": "text",
+          "title": "Hook method",
+          "text": "Delayed payoff increases average watch time."
+        }
+      ]
+    },
+    {
+      "id": "post-prank-2",
+      "title": "This Prank Backfired Fast 😬",
+      "category": "Pranks",
+      "description": "Things escalated quicker than expected.",
+      "cards": [
+        {
+          "type": "video",
+          "title": "Prank gone wrong",
+          "video": "https://youtube.com/shorts/Ccb0898O3WI?si=n0DfvtHnbKIzveYp",
+          "thumbnail": "https://img.youtube.com/vi/Ccb0898O3WI/maxresdefault.jpg",
+          "locked": false
+        },
+        {
+          "type": "text",
+          "title": "Lesson",
+          "text": "Escalation boosts tension but risks backlash."
+        }
+      ]
+    },
+    {
+      "id": "post-reaction-2",
+      "title": "You Can’t Watch This Without Laughing 🤣",
+      "category": "Funny Reactions",
+      "description": "Laughter guaranteed.",
+      "cards": [
+        {
+          "type": "video",
+          "title": "Uncontrollable laughter",
+          "video": "https://youtube.com/shorts/kz5AN6jGknM?si=n64VXCs5Vygeg4l_",
+          "thumbnail": "https://img.youtube.com/vi/kz5AN6jGknM/maxresdefault.jpg",
+          "locked": false
+        },
+        {
+          "type": "text",
+          "title": "Why it spreads",
+          "text": "Laughter triggers instant social sharing."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+/* =========================================================
+   REFLY REELS – VIDEO FEED STYLES (OPTIMIZED)
+   Mobile-first • Fast • Stable • Neuromarketing-ready
+   ========================================================= */
+
+/* -------------------------
+   RESET / BASE
+------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: #000;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overscroll-behavior-y: none;
+  touch-action: pan-y;
+}
+
+/* -------------------------
+   REELS CONTAINER
+------------------------- */
+.reels-container {
+  height: 100svh; /* fixes mobile viewport issues */
+  width: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+  contain: content;
+}
+
+/* Hide scrollbar */
+.reels-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* -------------------------
+   SINGLE REEL
+------------------------- */
+.reel {
+  position: relative;
+  height: 100svh;
+  width: 100%;
+  scroll-snap-align: start;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  contain: layout paint;
+}
+
+/* -------------------------
+   VIDEO
+------------------------- */
+.reel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* -------------------------
+   LOADING SKELETON
+------------------------- */
+.reel .skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #111 25%,
+    #222 37%,
+    #111 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s infinite ease;
+  z-index: 3;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* -------------------------
+   OVERLAY CONTENT
+------------------------- */
+.reel .overlay {
+  position: absolute;
+  bottom: 90px;
+  left: 14px;
+  right: 80px;
+  color: #fff;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.reel .overlay strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  opacity: 0.95;
+}
+
+.reel .overlay p {
+  font-size: 0.85rem;
+  line-height: 1.35;
+  opacity: 0.9;
+}
+
+/* -------------------------
+   ACTION BUTTONS
+------------------------- */
+.reel .actions {
+  position: absolute;
+  right: 12px;
+  bottom: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 4;
+}
+
+.reel .actions span {
+  font-size: 1.6rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.reel .actions span:active {
+  transform: scale(1.15);
+}
+
+.reel .actions .active {
+  color: #ff2d55;
+}
+
+/* -------------------------
+   PROGRESS BAR
+------------------------- */
+.reel .progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #00ffcc, #00b3ff);
+  z-index: 5;
+}
+
+/* -------------------------
+   CTA BUTTON
+------------------------- */
+.reel .cta {
+  position: absolute;
+  bottom: 24px;
+  left: 14px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  text-decoration: none;
+  z-index: 4;
+}
+
+/* -------------------------
+   SAFE AREA (iOS)
+------------------------- */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .reel .overlay {
+    bottom: calc(90px + env(safe-area-inset-bottom));
+  }
+
+  .reel .actions {
+    bottom: calc(110px + env(safe-area-inset-bottom));
+  }
+}
+
+/* -------------------------
+   REDUCED MOTION
+------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .reel .skeleton {
+    animation: none;
+  }
+}
+
+/* -------------------------
+   DESKTOP FALLBACK
+------------------------- */
+@media (min-width: 768px) {
+  .reels-container {
+    max-width: 420px;
+    margin: 0 auto;
+    border-left: 1px solid #111;
+    border-right: 1px solid #111;
+  }
+}

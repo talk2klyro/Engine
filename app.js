@@ -1,9 +1,7 @@
 // ===========================
-// APP.JS – Refly Card-based Posts (Refactored & Optimized)
+// APP.JS – MERGED VIDEO-FIRST + CARD FEED + AFFILIATE
 // ===========================
-
 document.addEventListener("DOMContentLoaded", () => {
-
   // ---------------------------
   // 🔒 ACCESS CONTROL
   // ---------------------------
@@ -13,142 +11,216 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------------------------
-  // CONSTANTS & DOM REFERENCES
+  // DOM REFERENCES
   // ---------------------------
-  const WHATSAPP_URL = "https://chat.whatsapp.com/HbO36O92c0j1LDowCpbF3v";
-
   const grid = document.getElementById("posts-container") || document.getElementById("grid");
   const searchInput = document.getElementById("searchInput");
   const openAffiliateModal = document.getElementById("openAffiliateModal");
   const affiliateModal = document.getElementById("affiliateModal");
-  const closeModalBtn = document.querySelector(".close-modal");
+  const closeModalBtn = affiliateModal?.querySelector(".close-modal");
+  const feedSwitcher = document.getElementById("feed-switcher");
 
-  let posts = [];
+  if (!grid) return;
 
-  // ---------------------------
-  // UTILITY FUNCTIONS
-  // ---------------------------
-  const toRoman = num => ["", "I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV"][num] || num;
+  let items = [];
 
   // ---------------------------
-  // FETCH POSTS
+  // UTILS
   // ---------------------------
-  async function loadPosts() {
+  const debounce = (fn, delay = 200) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+  };
+
+  const getEmbedUrl = url => {
+    if (!url) return "";
+    if (url.includes("youtube.com/watch")) {
+      const id = new URL(url).searchParams.get("v");
+      return `https://www.youtube.com/embed/${id}?autoplay=1`;
+    }
+    if (url.includes("youtube.com/shorts")) {
+      const id = url.split("/shorts/")[1];
+      return `https://www.youtube.com/embed/${id}?autoplay=1`;
+    }
+    if (url.includes("instagram.com")) return `${url}embed`;
+    if (url.includes("tiktok.com")) return `${url}?embed=1`;
+    if (url.includes("facebook.com")) return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&autoplay=true`;
+    return url;
+  };
+
+  // ---------------------------
+  // CREATE CARD HELPERS
+  // ---------------------------
+  const createEmbedVideoCard = card => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "card card-video";
+    wrapper.style.aspectRatio = "9/16";
+
+    const preview = document.createElement("div");
+    preview.className = "video-preview";
+    preview.style.position = "relative";
+    preview.style.width = "100%";
+    preview.style.paddingTop = "56.25%";
+    preview.style.overflow = "hidden";
+    preview.style.borderRadius = "14px";
+    preview.style.background = "#000";
+
+    preview.innerHTML = `
+      <img src="${card.thumbnail}" alt="${card.title}" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div class="play-overlay" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:3rem; color:white; background:rgba(0,0,0,.35); cursor:pointer;">▶</div>
+    `;
+
+    preview.addEventListener("click", () => {
+      preview.innerHTML = `
+        <iframe src="${getEmbedUrl(card.video)}" style="position:absolute; inset:0; width:100%; height:100%;" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      `;
+    });
+
+    wrapper.appendChild(preview);
+    return wrapper;
+  };
+
+  const createDirectVideoCard = card => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "card card-video";
+    wrapper.style.aspectRatio = "9/16";
+
+    const video = document.createElement("video");
+    video.setAttribute("controls", "true");
+    video.setAttribute("preload", "metadata");
+    video.style.width = "100%";
+    video.style.height = "100%";
+    video.style.objectFit = "cover";
+
+    // Lazy load using IntersectionObserver
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !video.src) {
+          video.src = card.video;
+          io.unobserve(video);
+        }
+      });
+    });
+    io.observe(video);
+
+    wrapper.appendChild(video);
+    return wrapper;
+  };
+
+  const createTextCard = card => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "card card-text";
+    wrapper.innerHTML = `<h3>${card.title}</h3><p>${card.text}</p>`;
+    return wrapper;
+  };
+
+  const createMerchCard = card => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "card card-merch";
+    wrapper.innerHTML = `<h3>${card.title}</h3><p class="price">${card.price || "N/A"}</p><p class="availability">${card.availability || "Available"}</p>`;
+    return wrapper;
+  };
+
+  // ---------------------------
+  // RENDER FUNCTION
+  // ---------------------------
+  const render = data => {
+    grid.innerHTML = "";
+    const frag = document.createDocumentFragment();
+
+    data.forEach(post => {
+      const postDiv = document.createElement("div");
+      postDiv.className = "post";
+      postDiv.innerHTML = `<h2>${post.title}</h2>${post.description ? `<p>${post.description}</p>` : ""}`;
+
+      const cardsWrapper = document.createElement("div");
+      cardsWrapper.className = "cards-wrapper";
+
+      (post.cards || []).forEach(card => {
+        let cardEl;
+        if (card.type === "video") {
+          cardEl = card.video.includes("youtube") || card.video.includes("tiktok") || card.video.includes("instagram") || card.video.includes("facebook")
+            ? createEmbedVideoCard(card)
+            : createDirectVideoCard(card);
+        } else if (card.type === "text") {
+          cardEl = createTextCard(card);
+        } else if (card.type === "merch") {
+          cardEl = createMerchCard(card);
+        } else {
+          cardEl = createTextCard(card);
+        }
+        cardsWrapper.appendChild(cardEl);
+      });
+
+      postDiv.appendChild(cardsWrapper);
+
+      const actionsDiv = document.createElement("div");
+      actionsDiv.className = "post-actions";
+
+      if (post.insight) {
+        const btn = document.createElement("button");
+        btn.className = "btn-insight";
+        btn.textContent = "Insight";
+        btn.onclick = () => window.location.href = `insight.html?id=${post.insight}`;
+        actionsDiv.appendChild(btn);
+      }
+
+      if (post.reference) {
+        const btn = document.createElement("button");
+        btn.className = "btn-reference";
+        btn.textContent = "Reference";
+        btn.onclick = () => window.location.href = `reference.html?id=${post.reference}`;
+        actionsDiv.appendChild(btn);
+      }
+
+      const commentBtn = document.createElement("button");
+      commentBtn.className = "btn-comment";
+      commentBtn.textContent = "💬 Comment";
+      commentBtn.onclick = () => window.open("https://whatsapp.com/channel/0029Vb77PdM6LwHtxQS6u638", "_blank");
+      actionsDiv.appendChild(commentBtn);
+
+      postDiv.appendChild(actionsDiv);
+      frag.appendChild(postDiv);
+    });
+
+    grid.appendChild(frag);
+  };
+
+  // ---------------------------
+  // LOAD DATA
+  // ---------------------------
+  const loadPosts = async () => {
     try {
       const res = await fetch("data.json");
-      let data = await res.json();
-      if (!Array.isArray(data)) data = [data];
-      posts = data;
-      renderPosts(posts);
+      const json = await res.json();
+      items = Array.isArray(json.posts) ? json.posts : [];
+      render(items);
     } catch (err) {
-      console.error("Failed to load posts:", err);
-      if (grid) grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
+      console.error("Failed to load data.json", err);
+      grid.innerHTML = "<p style='color:#ff4d4d;'>Failed to load content.</p>";
     }
-  }
+  };
 
-  // ---------------------------
-  // RENDER FUNCTIONS
-  // ---------------------------
-  function renderPosts(postsArray) {
-    if (!grid) return;
-    grid.innerHTML = "";
-    postsArray.forEach(post => grid.appendChild(createPostElement(post)));
-  }
-
-  function createPostElement(post) {
-    const postDiv = document.createElement("div");
-    postDiv.className = "post";
-
-    // Title & Description
-    const header = document.createElement("h2");
-    header.textContent = post.title;
-    postDiv.appendChild(header);
-
-    const desc = document.createElement("p");
-    desc.textContent = post.description;
-    postDiv.appendChild(desc);
-
-    // Cards
-    const cardsWrapper = document.createElement("div");
-    cardsWrapper.className = "cards-wrapper";
-    if (Array.isArray(post.cards)) {
-      post.cards.forEach(card => cardsWrapper.appendChild(createCardElement(card)));
-    }
-    postDiv.appendChild(cardsWrapper);
-
-    // Action Buttons
-    const actionsDiv = document.createElement("div");
-    actionsDiv.className = "post-actions";
-
-    if (post.insight) actionsDiv.appendChild(createActionButton("insight", post));
-    if (post.reference) actionsDiv.appendChild(createActionButton("reference", post));
-
-    // Comment button always
-    const commentBtn = document.createElement("button");
-    commentBtn.textContent = "Comment";
-    commentBtn.className = "btn-comment";
-    commentBtn.addEventListener("click", () => openCommentModal(post.id));
-    actionsDiv.appendChild(commentBtn);
-
-    postDiv.appendChild(actionsDiv);
-
-    return postDiv;
-  }
-
-  function createCardElement(card) {
-    const cardDiv = document.createElement("div");
-    cardDiv.className = "card";
-
-    const titleEl = document.createElement("h3");
-    titleEl.textContent = card.title;
-    cardDiv.appendChild(titleEl);
-
-    const textEl = document.createElement("p");
-    textEl.textContent = card.text;
-    cardDiv.appendChild(textEl);
-
-    return cardDiv;
-  }
-
-  function createActionButton(type, post) {
-    const btn = document.createElement("button");
-    if (type === "insight") {
-      btn.textContent = "🤔 Insight";
-      btn.className = "btn-insight";
-      btn.addEventListener("click", () => window.location.href = `insight.html?id=${post.insight}`);
-    } else if (type === "reference") {
-      btn.textContent = "Reference";
-      btn.className = "btn-reference";
-      btn.addEventListener("click", () => window.location.href = `reference.html?id=${post.reference}`);
-    }
-    return btn;
-  }
-
-  // ---------------------------
-  // COMMENT MODAL (Example)
-  // ---------------------------
-  function openCommentModal(postId) {
-    const modal = document.getElementById("comment-modal");
-    if (!modal) return;
-    modal.classList.remove("hidden");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    const postIdEl = modal.querySelector(".modal-post-id");
-    if (postIdEl) postIdEl.textContent = postId;
-  }
+  loadPosts();
 
   // ---------------------------
   // SEARCH
   // ---------------------------
   if (searchInput) {
-    searchInput.addEventListener("input", e => {
+    searchInput.addEventListener("input", debounce(e => {
       const q = e.target.value.toLowerCase();
-      const filtered = posts.filter(post =>
+      render(items.filter(post =>
         post.title.toLowerCase().includes(q) ||
-        post.description.toLowerCase().includes(q)
-      );
-      renderPosts(filtered);
-    });
+        (post.description && post.description.toLowerCase().includes(q)) ||
+        (post.cards && post.cards.some(card =>
+          (card.title && card.title.toLowerCase().includes(q)) ||
+          (card.text && card.text.toLowerCase().includes(q))
+        ))
+      ));
+    }, 200));
   }
 
   // ---------------------------
@@ -168,8 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     closeModalBtn.addEventListener("click", closeModal);
-
-    affiliateModal.addEventListener("click", e => { if (e.target === affiliateModal) closeModal(); });
+    affiliateModal.addEventListener("click", e => {
+      if (e.target === affiliateModal) closeModal();
+    });
 
     document.addEventListener("keydown", e => {
       if (e.key === "Escape" && !affiliateModal.classList.contains("hidden")) closeModal();
@@ -177,8 +250,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------------------------
-  // INITIALIZE
+  // FEED SWITCHER (EMOJIS)
   // ---------------------------
-  loadPosts();
-
+  if (feedSwitcher) {
+    feedSwitcher.addEventListener("click", e => {
+      if (e.target.dataset.feed) window.location.href = e.target.dataset.feed;
+    });
+  }
 });

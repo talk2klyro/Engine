@@ -1,18 +1,22 @@
-/* =========================
-  FONT & VARIABLES
-========================= */
+/* =========================================================
+   REFYL DESIGN SYSTEM – STYLES
+   Mobile-first • Performance-focused • Neuromarketing-ready
+   ========================================================= */
+
+/* -------------------------
+   VARIABLES & FONT
+------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800&display=swap");
 
 :root {
   /* Colors */
-  --primary-color: #2C2C2C;      /* Deep Charcoal */
-  --accent-color: #E26D5C;       /* Warm Coral */
-  --bg-color: #f8f8f8;           /* Page background */
-  --card-bg: #AAB8C2;            /* Calm Blue Gray fallback for cards */
-  --text-color: #FFFFFF;         /* White text on gradient cards */
+  --primary-color: #2C2C2C;
+  --accent-color: #E26D5C;
+  --bg-color: #f8f8f8;
+  --card-bg: #AAB8C2;
+  --text-color: #FFFFFF;
   --shadow: 0 4px 12px rgba(0,0,0,0.1);
   --hover-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  --hover-scale: 1.05;
 
   /* Spacing */
   --gap: 1rem;
@@ -21,17 +25,21 @@
   /* Typography */
   --font-family: 'Gothic A1', sans-serif;
   --font-size-base: clamp(14px, 1vw, 18px);
+  --heading-scale: clamp(1.2rem, 4vw, 1.6rem);
+  --card-title-scale: clamp(1rem, 2.5vw, 1.2rem);
+  --card-text-scale: clamp(0.85rem, 2vw, 1rem);
+
+  /* Button scale */
+  --hover-scale: 1.05;
 }
 
-/* =========================
-  RESET
-========================= */
-*,
-*::before,
-*::after {
+/* -------------------------
+   RESET
+------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -45,8 +53,10 @@ body {
   font-size: var(--font-size-base);
 }
 
-/* Headings */
-h1, h2, h3 {
+/* -------------------------
+   HEADINGS
+------------------------- */
+h1,h2,h3 {
   font-weight: 700;
   color: var(--primary-color);
 }
@@ -55,9 +65,9 @@ p {
   color: var(--text-color);
 }
 
-/* =========================
-  TOPBAR
-========================= */
+/* -------------------------
+   TOPBAR
+------------------------- */
 .topbar {
   background: var(--card-bg);
   padding: 1rem var(--gap);
@@ -82,9 +92,9 @@ p {
   font-size: 1rem;
 }
 
-/* =========================
-  POSTS CONTAINER
-========================= */
+/* -------------------------
+   POSTS CONTAINER
+------------------------- */
 #posts-container {
   display: flex;
   flex-direction: column;
@@ -92,9 +102,9 @@ p {
   padding: var(--gap);
 }
 
-/* =========================
-  POST
-========================= */
+/* -------------------------
+   POST
+------------------------- */
 .post {
   background: var(--card-bg);
   border-radius: var(--border-radius);
@@ -106,16 +116,16 @@ p {
 }
 
 .post h2 {
-  font-size: 1.4rem;
+  font-size: var(--heading-scale);
 }
 
 .post p {
-  font-size: 1rem;
+  font-size: var(--card-text-scale);
 }
 
-/* =========================
-  CARDS WRAPPER
-========================= */
+/* -------------------------
+   CARDS WRAPPER
+------------------------- */
 .cards-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -123,15 +133,15 @@ p {
   margin-top: 0.5rem;
 }
 
-/* =========================
-  INDIVIDUAL CARD (Gradient Upgrade)
-========================= */
+/* -------------------------
+   INDIVIDUAL CARD
+------------------------- */
 .card {
   background: linear-gradient(
     135deg,
-    #2C2C2C,       /* Deep Charcoal */
-    #AAB8C2,       /* Calm Blue Gray */
-    #E26D5C        /* Warm Coral */
+    #2C2C2C,
+    #AAB8C2,
+    #E26D5C
   );
   border-radius: var(--border-radius);
   padding: 0.75rem;
@@ -152,25 +162,25 @@ p {
   box-shadow: var(--hover-shadow);
   background: linear-gradient(
     135deg,
-    #383838,       /* Slightly lighter charcoal */
-    #BCC8CE,       /* Lighter Calm Blue Gray */
-    #F08270        /* Brighter Warm Coral */
+    #383838,
+    #BCC8CE,
+    #F08270
   );
 }
 
 .card h3 {
-  font-size: 1.1rem;
+  font-size: var(--card-title-scale);
   color: var(--text-color);
 }
 
 .card p {
-  font-size: 0.95rem;
+  font-size: var(--card-text-scale);
   color: rgba(255,255,255,0.85);
 }
 
-/* =========================
-  POST ACTION BUTTONS (Gradient Upgrade)
-========================= */
+/* -------------------------
+   POST ACTION BUTTONS
+------------------------- */
 .post-actions {
   display: flex;
   flex-wrap: wrap;
@@ -203,7 +213,6 @@ p {
   color: #111827;
 }
 
-/* Button hover effect */
 .post-actions button:hover,
 .post-actions button:focus {
   transform: scale(1.05);
@@ -211,9 +220,9 @@ p {
   filter: brightness(1.1);
 }
 
-/* =========================
-  MODAL
-========================= */
+/* -------------------------
+   MODALS
+------------------------- */
 .modal {
   position: fixed;
   inset: 0;
@@ -241,7 +250,7 @@ p {
 }
 
 .modal-content h2 {
-  font-size: 1.4rem;
+  font-size: var(--heading-scale);
   margin-bottom: 0.5rem;
 }
 
@@ -259,18 +268,18 @@ p {
   cursor: pointer;
 }
 
-/* =========================
-  FOOTER
-========================= */
+/* -------------------------
+   FOOTER
+------------------------- */
 .footer {
   padding: 2rem var(--gap);
   border-top: 1px solid rgba(0,0,0,0.1);
   text-align: center;
 }
 
-/* =========================
-  RESPONSIVE
-========================= */
+/* -------------------------
+   RESPONSIVE
+------------------------- */
 @media (max-width: 768px) {
   .cards-wrapper {
     flex-direction: column;
@@ -300,9 +309,9 @@ p {
   }
 }
 
-/* =========================
-  REDUCED MOTION
-========================= */
+/* -------------------------
+   REDUCED MOTION
+------------------------- */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;

@@ -10,7 +10,7 @@
 <body>
 
   <!-- TOPBAR -->
-  <header class="topbar">
+  <header class="topbar" role="banner">
     <h1 class="logo-center">Refly</h1>
 
     <!-- Affiliate onboarding text -->
@@ -20,7 +20,7 @@
     </p>
 
     <!-- Affiliate CTA button -->
-    <button id="openAffiliateModal" class="affiliate-btn">
+    <button id="openAffiliateModal" class="affiliate-btn" aria-haspopup="dialog">
       🔥 Start sharing
     </button>
 
@@ -30,21 +30,27 @@
       type="search"
       placeholder="Search ideas"
       aria-label="Search inspiration"
+      autocomplete="off"
     />
+
+    <!-- Emoji feed switcher -->
+    <div id="feed-switcher" class="emoji-switcher" aria-label="Switch feed">
+      <span data-feed="index.html">🏠</span>
+      <span data-feed="reels.html">🎬</span>
+      <span data-feed="cards.html">📝</span>
+    </div>
   </header>
 
-  <!-- IMAGE CARD -->
-  <div class="card-image">
-    <img src="your-image.jpg" alt="">
-  </div>
-
   <!-- POSTS will be injected here -->
-  <main>
-    <div id="posts-container" aria-live="polite"></div>
+  <main role="main">
+    <div id="posts-container" class="feed" aria-live="polite"></div>
   </main>
 
+  <!-- MODAL ROOT (for interactive cards / videos) -->
+  <div id="modal-root"></div>
+
   <!-- AFFILIATE MODAL -->
-  <div id="affiliateModal" class="modal hidden" aria-hidden="true">
+  <div id="affiliateModal" class="modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
       <button class="close-modal" aria-label="Close modal">&times;</button>
 
@@ -68,10 +74,9 @@
   </div>
 
   <!-- COMMENT MODAL -->
-  <div id="comment-modal" class="hidden" aria-hidden="true">
+  <div id="comment-modal" class="modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <span class="close-modal" aria-label="Close modal">&times;</span>
-      <p>Post ID: <span class="modal-post-id"></span></p>
+      <button class="close-modal" aria-label="Close modal">&times;</button>
       <!-- Comment form here -->
     </div>
   </div>
@@ -82,6 +87,8 @@
       href="tribe.html"
       class="whatsapp-cta"
       role="button"
+      target="_blank"
+      rel="noopener"
     >
       Join WhatsApp Discussion Group
     </a>

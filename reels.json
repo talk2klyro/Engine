@@ -1,0 +1,58 @@
+{
+  "reels": [
+    {
+      "id": "post-prank-1",
+      "video": "https://youtube.com/shorts/FrnNbt57PVI",
+      "thumbnail": "https://img.youtube.com/vi/FrnNbt57PVI/maxresdefault.jpg",
+      "caption": "This Prank Went Too Far 😭 — Everyone laughed… until the ending.",
+      "tags": ["pranks"],
+      "cta": "Join the comments",
+      "link": "index.html#post-prank-1"
+    },
+    {
+      "id": "post-reaction-1",
+      "video": "https://youtube.com/shorts/0XHJC66RytI",
+      "thumbnail": "https://img.youtube.com/vi/0XHJC66RytI/maxresdefault.jpg",
+      "caption": "She Thought It Was Fake… It Wasn’t 😳",
+      "tags": ["reactions"],
+      "cta": "React with others",
+      "link": "index.html#post-reaction-1"
+    },
+    {
+      "id": "post-hidden-1",
+      "video": "https://youtube.com/shorts/3Zl1eKotwkY",
+      "thumbnail": "https://img.youtube.com/vi/3Zl1eKotwkY/maxresdefault.jpg",
+      "caption": "He Didn’t Know He Was Being Filmed 😂",
+      "tags": ["hidden-camera"],
+      "cta": "See reactions",
+      "link": "index.html#post-hidden-1"
+    },
+    {
+      "id": "post-ending-1",
+      "video": "https://youtube.com/shorts/N2xA1bkuNnQ",
+      "thumbnail": "https://img.youtube.com/vi/N2xA1bkuNnQ/maxresdefault.jpg",
+      "caption": "Wait Till You See the Last 2 Seconds 😱",
+      "tags": ["unexpected"],
+      "cta": "Watch again",
+      "link": "index.html#post-ending-1"
+    },
+    {
+      "id": "post-prank-2",
+      "video": "https://youtube.com/shorts/Ccb0898O3WI",
+      "thumbnail": "https://img.youtube.com/vi/Ccb0898O3WI/maxresdefault.jpg",
+      "caption": "They Regretted This Prank Instantly 😬",
+      "tags": ["pranks"],
+      "cta": "Comment your thoughts",
+      "link": "index.html#post-prank-2"
+    },
+    {
+      "id": "post-reaction-2",
+      "video": "https://youtube.com/shorts/kz5AN6jGknM",
+      "thumbnail": "https://img.youtube.com/vi/kz5AN6jGknM/maxresdefault.jpg",
+      "caption": "Funniest Reaction You’ll See Today 🤣",
+      "tags": ["reactions"],
+      "cta": "Laugh together",
+      "link": "index.html#post-reaction-2"
+    }
+  ]
+}
